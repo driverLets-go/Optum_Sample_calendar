@@ -1,0 +1,1847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeiTA Engagement Calendar</title>
+<meta name="description" content="The WeiTA engagement calendar: how a standing talent community is curated, grown, and engaged one capability at a time, month by month, and what each engagement converts into.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --terracotta:#B85235;
+  --terracotta-2:#C86D51;
+  --terracotta-dark:#6E2E1D;
+  --terracotta-deep:#4A2015;
+  --amber:#F3C096;
+  --ink:#1E242B;
+  --ink-2:#141910;
+  --stone:#827B75;
+  --burnt-stone:#5A544E;
+  --light-ink:#3A3F46;
+  --porcelain:#F8F6F3;
+  --white:#FFFFFF;
+  --slate:#7A8B99;
+
+  --bg:var(--porcelain);
+  --surface:var(--white);
+  --surface-2:#F1ECE5;
+  --text:var(--ink);
+  --text-soft:var(--light-ink);
+  --text-faint:var(--burnt-stone);
+  --border:rgba(130,123,117,0.28);
+  --accent:var(--terracotta-2);
+  --accent-strong:var(--terracotta);
+
+  --c-pub:#5B8A9A;
+  --c-video:#B8862F;
+  --c-course:#7A8B99;
+  --c-game:#B85235;
+  --c-virtual:#827B75;
+  --c-inperson:#5A544E;
+  --c-pitch:#C86D51;
+  --c-ama:#6E2E1D;
+  --c-podcast:#3A3F46;
+  --c-spotlight:#C9974A;
+  --c-traindeploy:#4F7A5C;
+  --c-mentor:#8A5A7A;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#181D22;
+    --surface:#20262D;
+    --surface-2:#262D34;
+    --text:var(--porcelain);
+    --text-soft:#CFC8BE;
+    --text-faint:#A79E93;
+    --border:rgba(200,190,178,0.16);
+    --accent:var(--amber);
+    --accent-strong:var(--terracotta-2);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#181D22;
+  --surface:#20262D;
+  --surface-2:#262D34;
+  --text:var(--porcelain);
+  --text-soft:#CFC8BE;
+  --text-faint:#A79E93;
+  --border:rgba(200,190,178,0.16);
+  --accent:var(--amber);
+  --accent-strong:var(--terracotta-2);
+}
+
+*{box-sizing:border-box;}
+html,body{ margin:0; padding:0; }
+body{
+  background:var(--bg); color:var(--text);
+  font-family:'Inter',sans-serif; font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{ max-width:1180px; margin:0 auto; padding:0 20px; }
+h1,h2,h3,h4{ font-family:'Newsreader',serif; font-weight:500; margin:0; text-wrap:balance; }
+p{ margin:0; }
+.eyebrow{ font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+img{ max-width:100%; }
+button{ font-family:inherit; }
+
+/* ---------- Cover ---------- */
+.cover{
+  position:relative; overflow:hidden; color:var(--porcelain);
+  background:
+    radial-gradient(ellipse 900px 700px at 82% 12%, rgba(200,109,81,0.5) 0%, rgba(200,109,81,0) 62%),
+    linear-gradient(150deg, var(--ink-2) 0%, var(--ink) 32%, var(--terracotta-dark) 78%, var(--terracotta-deep) 100%);
+  padding:56px 0 44px;
+}
+.cover-mark{ position:absolute; right:-8%; top:-14%; width:64%; max-width:760px; opacity:0.07; pointer-events:none; }
+.cover-mark path{ fill:#F8F6F3; }
+.cover-inner{ position:relative; z-index:2; padding-top:8px; padding-bottom:8px; }
+.wordmark{ font-family:'Newsreader',serif; font-weight:500; font-size:20px; letter-spacing:0.01em; }
+.wordmark .ta{ color:var(--terracotta-2); }
+.cover-kicker{
+  display:inline-block; margin-top:34px; font-size:11px; font-weight:700; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--amber); border:1px solid rgba(243,192,150,0.4); padding:6px 14px;
+}
+h1.cover-h{
+  margin-top:22px; font-size:clamp(28px,4.4vw,44px); line-height:1.16; max-width:820px; color:var(--porcelain);
+}
+h1.cover-h em{ font-style:italic; color:var(--amber); }
+.cover-sub{
+  margin-top:20px; max-width:660px; font-size:15.5px; line-height:1.65; color:#E7DFD3;
+}
+.cover-thread{ margin-top:24px; font-family:'Newsreader',serif; font-style:italic; font-size:14.5px; line-height:1.6; color:var(--amber); max-width:660px; }
+.cover-thread b{ font-weight:500; color:var(--porcelain); font-style:normal; }
+.cover-flow{ margin-top:34px; display:flex; align-items:flex-start; }
+.flow-node{ flex:1; position:relative; padding-right:22px; }
+.flow-node:last-child{ padding-right:0; }
+.flow-top{ display:flex; align-items:center; }
+.flow-num{
+  width:32px; height:32px; border-radius:50%; flex:0 0 auto; border:1px solid rgba(243,192,150,0.45);
+  display:flex; align-items:center; justify-content:center; font-family:'Newsreader',serif; font-style:italic;
+  font-size:13px; color:var(--amber); position:relative; z-index:1; background:rgba(20,25,29,0.35);
+}
+.flow-line{ flex:1; height:1px; margin-left:2px; margin-right:10px; position:relative; background:linear-gradient(90deg, rgba(243,192,150,0.5), rgba(243,192,150,0.1)); }
+.flow-line::after{ content:""; position:absolute; right:0; top:50%; width:7px; height:7px; border-right:1px solid rgba(243,192,150,0.55); border-top:1px solid rgba(243,192,150,0.55); transform:translateY(-50%) rotate(45deg); }
+.flow-node:last-child .flow-line{ display:none; }
+.flow-icon{ width:17px; height:17px; flex:0 0 auto; color:var(--amber); stroke:currentColor; fill:none; }
+.flow-node h4{ margin-top:13px; display:flex; align-items:center; gap:8px; font-family:'Newsreader',serif; font-weight:500; font-size:14px; color:var(--porcelain); }
+.flow-node p{ margin-top:6px; font-size:11px; line-height:1.55; color:#C9BFB2; max-width:210px; }
+@media (max-width:820px){
+  .cover-flow{ flex-wrap:wrap; row-gap:24px; }
+  .flow-node{ flex:1 1 100%; padding-right:0; }
+  .flow-node p{ max-width:none; }
+  .flow-line{ display:none; }
+}
+
+/* ---------- verification signal grid (section 01) ---------- */
+.verify-grid{ margin-top:24px; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+.verify-item{ background:var(--surface); padding:20px 18px; }
+.verify-num{ font-family:'Newsreader',serif; font-style:italic; font-size:13px; color:var(--accent-strong); }
+.verify-item h5{ margin-top:8px; font-size:13.5px; color:var(--text); font-weight:600; }
+.verify-item p{ margin-top:7px; font-size:12px; color:var(--text-soft); line-height:1.55; }
+@media (max-width:820px){ .verify-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){ .verify-grid{ grid-template-columns:1fr; } }
+
+/* ---------- format variety grid (section 03) ---------- */
+.variety-grid{ margin-top:18px; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:34px; }
+.variety-item{ background:var(--surface); padding:17px 16px; }
+.variety-item .variety-num{ font-family:'Newsreader',serif; font-style:italic; font-size:12px; color:var(--text-faint); }
+.variety-item h5{ margin-top:6px; font-size:12.5px; color:var(--text); font-weight:600; line-height:1.35; }
+.variety-item p{ margin-top:6px; font-size:11.5px; color:var(--text-soft); line-height:1.5; }
+@media (max-width:820px){ .variety-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){ .variety-grid{ grid-template-columns:1fr; } }
+.cluster-map-note{ margin-top:8px; font-size:12.5px; color:var(--text-soft); line-height:1.6; max-width:760px; }
+.cluster-tabs{ display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+.cluster-tab{ font-size:11.5px; font-weight:700; letter-spacing:0.02em; padding:8px 14px; background:var(--surface); border:1px solid var(--border); color:var(--text-soft); cursor:pointer; font-family:inherit; }
+.cluster-tab[aria-pressed="true"]{ background:var(--ink); color:var(--amber); border-color:var(--ink); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .cluster-tab[aria-pressed="true"]{ background:var(--accent-strong); color:var(--ink-2); border-color:var(--accent-strong); } }
+:root[data-theme="dark"] .cluster-tab[aria-pressed="true"]{ background:var(--accent-strong); color:var(--ink-2); border-color:var(--accent-strong); }
+.cluster-panel{ margin-top:14px; border:1px solid var(--border); background:var(--surface); max-width:760px; }
+.cluster-panel-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:var(--surface-2); border-bottom:1px solid var(--border); }
+.cluster-panel-head h5{ font-size:13.5px; color:var(--text); font-weight:700; }
+.cluster-panel-month{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent-strong); white-space:nowrap; }
+.cluster-panel-month.not-yet{ color:var(--text-faint); }
+.cluster-panel-rows{ display:flex; flex-direction:column; }
+.cp-row{ display:flex; gap:14px; padding:12px 16px; border-bottom:1px solid var(--border); }
+.cp-row:last-child{ border-bottom:none; }
+.cp-row svg{ width:15px; height:15px; color:var(--accent-strong); flex:none; margin-top:1px; }
+.cp-row-body{ flex:1; }
+.cp-row-label{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-faint); }
+.cp-row-text{ margin-top:3px; font-size:12.5px; color:var(--text); line-height:1.5; }
+.cluster-map-footnote{ margin-top:12px; margin-bottom:34px; font-size:11.5px; color:var(--text-faint); line-height:1.6; max-width:700px; font-style:italic; }
+@media (max-width:520px){ .cluster-panel{ max-width:none; } }
+
+/* ---------- channel chip icons ---------- */
+.chan-chip{ display:inline-flex; align-items:center; gap:5px; }
+.chan-icon{ width:12px; height:12px; flex:0 0 auto; }
+.cover-tagline{ margin-top:40px; font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--amber); }
+
+/* ---------- generic section ---------- */
+section{ padding:64px 0; border-bottom:1px solid var(--border); }
+section:last-of-type{ border-bottom:none; }
+.section-head{ max-width:740px; margin-bottom:34px; }
+.section-head h2{ margin-top:10px; font-size:clamp(22px,3vw,30px); color:var(--text); }
+.section-head p{ margin-top:14px; color:var(--text-soft); font-size:14.5px; line-height:1.7; }
+
+/* ---------- curation flow ---------- */
+.stage-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:760px){ .stage-row{ grid-template-columns:1fr; } }
+.stage-card{ background:var(--surface); border-top:3px solid var(--accent); padding:22px 20px; position:relative; }
+.stage-num{
+  font-family:'Newsreader',serif; font-style:italic; font-size:15px; color:var(--accent-strong);
+  width:30px; height:30px; border-radius:50%; border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+  margin-bottom:14px;
+}
+.stage-card h3{ font-size:16.5px; color:var(--text); margin-bottom:8px; }
+.stage-card p{ font-size:13.5px; color:var(--text-soft); line-height:1.6; }
+.stage-tag{ display:inline-block; margin-top:12px; font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); }
+.curation-note{ margin-top:22px; background:var(--surface-2); border-left:3px solid var(--accent); padding:16px 18px; font-size:13.5px; color:var(--text-soft); line-height:1.65; }
+
+/* ---------- phases ---------- */
+.phase-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:760px){ .phase-row{ grid-template-columns:1fr; } }
+.phase-card{ background:var(--surface); padding:22px 20px; border-top:3px solid var(--border); display:flex; flex-direction:column; gap:12px; }
+.phase-card.active{ border-top-color:var(--accent); }
+.phase-label{ font-size:10.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-strong); }
+.phase-card h3{ font-size:17px; }
+.phase-card p{ font-size:13.5px; color:var(--text-soft); line-height:1.6; }
+.chip-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:8px; }
+.chan-chip{ font-size:10.5px; font-weight:600; padding:4px 9px; border:1px solid var(--border); color:var(--text-faint); }
+.phase-badge{ align-self:flex-start; font-size:9.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:3px 8px; background:var(--surface-2); color:var(--text-faint); }
+.phase-badge.mine{ background:var(--ink); color:var(--amber); }
+
+/* ---------- cadence model ---------- */
+.cadence-stats{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:30px; }
+.cadence-stat{ background:var(--surface); border:1px solid var(--border); padding:16px 20px; flex:1; min-width:160px; }
+.cadence-stat .num{ font-family:'Newsreader',serif; font-size:28px; color:var(--accent-strong); font-weight:600; }
+.cadence-stat .lbl{ font-size:11px; color:var(--text-faint); font-weight:700; letter-spacing:0.05em; text-transform:uppercase; margin-top:4px; }
+
+.calendar-toolbar{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px 24px; flex-wrap:wrap; margin-bottom:10px; }
+.calendar-toolbar .month-tabs{ margin-bottom:0; }
+.track-filter{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-left:auto; padding:9px 12px; background:var(--surface-2); border:1px solid var(--border); }
+.track-filter-lbl{ font-size:10.5px; font-weight:700; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-right:2px; }
+.track-btn{ font-size:11.5px; font-weight:700; padding:6px 12px; background:var(--surface); border:1px solid var(--border); color:var(--text-soft); cursor:pointer; }
+.track-btn[aria-pressed="true"]{ background:var(--accent-strong); color:#fff; border-color:var(--accent-strong); }
+.track-desc{ font-size:12.5px; color:var(--text-faint); margin-bottom:20px; max-width:660px; line-height:1.6; min-height:20px; }
+.cadence-benchmark-note{ font-size:12px; color:var(--text-faint); font-style:italic; margin:-16px 0 30px; max-width:640px; line-height:1.6; }
+
+/* experience journey, two distinct paths, always visible */
+.exp-journey{ background:var(--surface); border:1px solid var(--border); padding:20px 22px; margin-bottom:28px; }
+.exp-journey .ej-intro{ font-size:12.5px; color:var(--text-soft); line-height:1.6; margin-bottom:18px; max-width:760px; }
+.ej-cols{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+@media (max-width:760px){ .ej-cols{ grid-template-columns:1fr; } }
+.ej-col h4{ font-family:'Newsreader',serif; font-size:15px; font-weight:500; color:var(--text); }
+.ej-col .ej-sub{ font-size:11.5px; color:var(--text-faint); margin-top:2px; margin-bottom:14px; }
+.ej-steps{ display:flex; flex-direction:column; gap:0; }
+.ej-step{ display:flex; gap:12px; position:relative; padding-bottom:16px; }
+.ej-step:last-child{ padding-bottom:0; }
+.ej-marker{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; position:relative; z-index:1; }
+.ej-line{ position:absolute; left:11px; top:22px; bottom:0; width:2px; }
+.ej-step:last-child .ej-line{ display:none; }
+.ej-body h5{ font-family:'Newsreader',serif; font-size:13px; font-weight:500; color:var(--text); margin:2px 0 3px; }
+.ej-body p{ font-size:11.5px; color:var(--text-soft); line-height:1.5; }
+.ej-col.early .ej-marker{ background:var(--c-traindeploy); }
+.ej-col.early .ej-line{ background:var(--c-traindeploy); opacity:0.35; }
+.ej-col.exp .ej-marker{ background:var(--accent-strong); }
+.ej-col.exp .ej-line{ background:var(--accent-strong); opacity:0.35; }
+
+/* format-library "how this runs" disclosure */
+.lib-detail{ margin-top:11px; border-top:1px dashed var(--border); padding-top:9px; }
+.lib-detail summary{ font-size:10px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--accent-strong); cursor:pointer; list-style:none; }
+.lib-detail summary::-webkit-details-marker{ display:none; }
+.lib-detail summary::after{ content:" +"; }
+.lib-detail[open] summary::after{ content:" −"; }
+.lib-detail ol{ margin:8px 0 0; padding-left:16px; font-size:11px; color:var(--text-soft); line-height:1.55; }
+.lib-detail li{ margin-bottom:4px; }
+
+/* speed mentoring */
+.mock-speedmentor .sm-body{ padding:14px; }
+.mock-speedmentor .sm-top{ font-size:10px; font-weight:700; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.04em; }
+.mock-speedmentor .sm-pair{ display:flex; align-items:center; gap:8px; margin-top:12px; }
+.mock-speedmentor .sm-side{ flex:1; background:var(--surface-2); padding:8px 9px; }
+.mock-speedmentor .sm-side .sm-role{ font-size:8.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; color:var(--text-faint); }
+.mock-speedmentor .sm-side .sm-who{ font-size:11px; font-weight:600; color:var(--text); margin-top:2px; }
+.mock-speedmentor .sm-side.senior{ border-left:3px solid var(--accent-strong); }
+.mock-speedmentor .sm-side.junior{ border-left:3px solid var(--c-traindeploy); }
+.mock-speedmentor .sm-arrow{ font-size:13px; color:var(--text-faint); }
+
+.month-tabs{ display:flex; gap:7px; margin-bottom:10px; flex-wrap:wrap; }
+.month-tab{ font-size:12px; font-weight:700; letter-spacing:0.03em; padding:8px 15px; background:var(--surface); border:1px solid var(--border); color:var(--text-soft); cursor:pointer; }
+.month-tab[aria-pressed="true"]{ background:var(--ink); color:var(--amber); border-color:var(--ink); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .month-tab[aria-pressed="true"]{ background:var(--accent-strong); color:var(--ink-2); border-color:var(--accent-strong); } }
+:root[data-theme="dark"] .month-tab[aria-pressed="true"]{ background:var(--accent-strong); color:var(--ink-2); border-color:var(--accent-strong); }
+.month-cluster-note{ font-size:12.5px; color:var(--text-faint); margin-bottom:24px; max-width:700px; line-height:1.6; }
+.month-cluster-note b{ color:var(--accent-strong); font-weight:700; }
+
+.week-tabs{ display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap; }
+.week-tab{
+  font-size:12.5px; font-weight:700; letter-spacing:0.04em; padding:9px 18px; background:var(--surface);
+  border:1px solid var(--border); color:var(--text-soft); cursor:pointer;
+}
+.week-tab[aria-pressed="true"]{ background:var(--ink); color:var(--amber); border-color:var(--ink); }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .week-tab[aria-pressed="true"]{ background:var(--accent-strong); color:var(--ink-2); border-color:var(--accent-strong); } }
+:root[data-theme="dark"] .week-tab[aria-pressed="true"]{ background:var(--accent-strong); color:var(--ink-2); border-color:var(--accent-strong); }
+
+.week-panel{ display:none; }
+.week-panel.show{ display:block; }
+.week-meta{ font-size:12.5px; color:var(--text-faint); margin-bottom:14px; font-weight:600; }
+.slot-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+@media (max-width:700px){ .slot-row{ grid-template-columns:1fr; } }
+.slot{
+  display:flex; align-items:flex-start; gap:10px; background:var(--surface); border:1px solid var(--border);
+  padding:14px 15px; cursor:pointer; text-align:left; width:100%;
+}
+.slot:hover{ border-color:var(--accent); }
+.slot.slot-hidden{ display:none; }
+.slot .fdot{ width:10px; height:10px; border-radius:50%; margin-top:4px; flex:0 0 auto; }
+.slot .stxt{ flex:1; }
+.slot .stxt .ftype{ display:block; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); }
+.slot .stxt .ftitle{ display:block; font-size:13px; font-weight:600; color:var(--text); margin-top:3px; }
+.slot .strack{ font-size:8px; font-weight:700; padding:2px 6px; text-transform:uppercase; letter-spacing:0.03em; border:1px solid var(--border); color:var(--text-faint); flex:0 0 auto; margin-top:1px; }
+.slot.flagship{ background:linear-gradient(120deg, var(--ink) 0%, var(--terracotta-dark) 100%); border-color:transparent; }
+.slot.flagship .ftype{ color:var(--amber); }
+.slot.flagship .ftitle{ color:var(--porcelain); }
+.slot.flagship .strack{ border-color:rgba(243,192,150,0.4); color:var(--amber); }
+
+.lib-head{ margin:50px 0 20px; display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+.lib-head h3{ font-size:19px; }
+.lib-head p{ font-size:12.5px; color:var(--text-faint); max-width:440px; }
+
+.lib-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+@media (max-width:980px){ .lib-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .lib-grid{ grid-template-columns:1fr; } }
+.mock{ background:var(--surface); border:1px solid var(--border); overflow:hidden; transition:box-shadow .2s, border-color .2s; scroll-margin-top:24px; }
+.mock.pulse{ border-color:var(--accent-strong); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent-strong) 25%, transparent); }
+.mock-label{ display:flex; align-items:center; gap:7px; padding:10px 13px; border-top:1px solid var(--border); }
+.mock-label .fdot{ width:8px; height:8px; border-radius:50%; }
+.mock-label span{ font-size:11px; font-weight:700; color:var(--text-faint); letter-spacing:0.03em; }
+.mock-curate{ padding:0 13px 12px; font-size:10.5px; color:var(--text-faint); line-height:1.5; font-style:italic; }
+
+/* article */
+.mock-article .art-img{ height:96px; background:linear-gradient(120deg, var(--c-pub) 0%, #7FAAB8 100%); position:relative; }
+.mock-article .art-tag{ position:absolute; left:10px; top:10px; background:rgba(20,25,29,0.55); color:#fff; font-size:9.5px; font-weight:700; padding:3px 8px; letter-spacing:0.04em; }
+.mock-article .art-body{ padding:13px 14px 4px; }
+.mock-article h5{ font-family:'Newsreader',serif; font-size:14.5px; font-weight:500; color:var(--text); line-height:1.3; }
+.mock-article .art-meta{ font-size:10.5px; color:var(--text-faint); margin-top:6px; }
+.mock-article .art-snip{ font-size:11.5px; color:var(--text-soft); margin-top:7px; line-height:1.5; }
+
+/* video */
+.mock-video .vid-frame{ height:108px; background:linear-gradient(135deg, var(--ink) 0%, var(--terracotta-dark) 100%); position:relative; display:flex; align-items:center; justify-content:center; }
+.mock-video .play{ width:34px; height:34px; border-radius:50%; background:rgba(248,246,243,0.92); display:flex; align-items:center; justify-content:center; }
+.mock-video .play svg{ width:12px; height:12px; margin-left:2px; }
+.mock-video .vid-dur{ position:absolute; right:8px; bottom:8px; background:rgba(20,25,29,0.7); color:#fff; font-size:9px; padding:2px 6px; font-weight:700; }
+.mock-video .vid-who{ position:absolute; left:10px; bottom:8px; color:#fff; font-size:9.5px; font-weight:700; text-shadow:0 1px 3px rgba(0,0,0,0.5); }
+.mock-video .vid-body{ padding:13px 14px 4px; }
+.mock-video h5{ font-family:'Newsreader',serif; font-size:14px; font-weight:500; color:var(--text); }
+
+/* course */
+.mock-course .crs-body{ padding:14px; }
+.mock-course .crs-top{ display:flex; justify-content:space-between; font-size:10px; font-weight:700; color:var(--text-faint); letter-spacing:0.04em; text-transform:uppercase; }
+.mock-course h5{ font-family:'Newsreader',serif; font-size:14.5px; font-weight:500; margin-top:8px; color:var(--text); }
+.mock-course .bar{ height:5px; background:var(--surface-2); margin-top:12px; }
+.mock-course .bar i{ display:block; height:100%; width:38%; background:var(--c-course); }
+.mock-course .crs-bottom{ display:flex; justify-content:space-between; align-items:center; margin-top:10px; font-size:11px; color:var(--text-faint); }
+.mock-course .startbtn{ font-size:10.5px; font-weight:700; color:var(--white); background:var(--c-course); padding:4px 10px; }
+
+/* hackathon */
+.mock-hackathon .hk-banner{ background:linear-gradient(120deg, var(--ink) 0%, var(--terracotta-dark) 90%); padding:16px 14px; color:var(--porcelain); }
+.mock-hackathon .hk-date{ font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--amber); }
+.mock-hackathon h5{ font-family:'Newsreader',serif; font-size:15px; color:var(--porcelain); margin-top:6px; }
+.mock-hackathon .hk-sub{ font-size:10.5px; color:#E7DFD3; margin-top:5px; }
+.mock-hackathon .hk-chips{ display:flex; gap:5px; margin-top:10px; flex-wrap:wrap; }
+.mock-hackathon .hk-chip{ font-size:8.5px; font-weight:700; padding:2px 6px; border:1px solid rgba(243,192,150,0.4); color:var(--amber); }
+.mock-hackathon .hk-cta{ margin-top:11px; display:inline-block; font-size:10px; font-weight:700; background:var(--amber); color:var(--ink); padding:5px 11px; }
+
+/* leaderboard */
+.mock-leaderboard .lb-body{ padding:13px 14px; }
+.mock-leaderboard .lb-top{ font-size:10px; font-weight:700; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.05em; }
+.mock-leaderboard h5{ font-family:'Newsreader',serif; font-size:13.5px; margin-top:4px; color:var(--text); }
+.mock-leaderboard .lb-row{ display:flex; align-items:center; gap:8px; margin-top:9px; }
+.mock-leaderboard .lb-rank{ font-family:'Newsreader',serif; font-style:italic; font-size:11px; color:var(--text-faint); width:14px; }
+.mock-leaderboard .lb-av{ width:26px; height:20px; border-radius:3px; background:var(--c-game); color:#fff; font-size:8px; font-weight:700; display:flex; align-items:center; justify-content:center; letter-spacing:0.02em; }
+.mock-leaderboard .lb-name{ font-size:11px; color:var(--text-soft); flex:1; }
+.mock-leaderboard .lb-pts{ font-size:10.5px; font-weight:700; color:var(--c-game); }
+.mock-leaderboard .lb-city-note{ font-size:9.5px; color:var(--text-faint); margin-top:8px; font-style:italic; }
+
+/* virtual */
+.mock-virtual .vt-top{ padding:11px 14px 0; }
+.mock-virtual h5{ font-family:'Newsreader',serif; font-size:13.5px; color:var(--text); }
+.mock-virtual .vt-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:5px; padding:10px 14px; }
+.mock-virtual .vt-tile{ aspect-ratio:1.3; background:var(--surface-2); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:var(--text-faint); }
+.mock-virtual .vt-tile.speak{ background:var(--c-virtual); color:#fff; box-shadow:0 0 0 2px var(--accent-strong); }
+.mock-virtual .vt-bottom{ display:flex; justify-content:space-between; align-items:center; padding:0 14px 13px; font-size:10.5px; color:var(--text-faint); }
+.mock-virtual .joinbtn{ font-size:10px; font-weight:700; color:#fff; background:var(--c-virtual); padding:4px 10px; }
+
+/* in-person */
+.mock-inperson .ip-map{ height:76px; background-image:linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size:14px 14px; background-color:var(--surface-2); position:relative; display:flex; align-items:center; justify-content:center; }
+.mock-inperson .ip-pin{ width:22px; height:22px; }
+.mock-inperson .ip-body{ padding:13px 14px; }
+.mock-inperson h5{ font-family:'Newsreader',serif; font-size:13.5px; color:var(--text); }
+.mock-inperson .ip-when{ font-size:11px; color:var(--text-faint); margin-top:4px; }
+.mock-inperson .ip-bottom{ display:flex; justify-content:space-between; align-items:center; margin-top:10px; }
+.mock-inperson .ip-avs{ display:flex; }
+.mock-inperson .ip-av{ width:18px; height:18px; border-radius:50%; background:var(--c-inperson); border:2px solid var(--surface); margin-left:-6px; }
+.mock-inperson .ip-av:first-child{ margin-left:0; }
+.mock-inperson .rsvpbtn{ font-size:10px; font-weight:700; color:#fff; background:var(--c-inperson); padding:4px 10px; }
+
+/* pitch, now a visible submit-to-leadership pipeline */
+.mock-pitch .pt-body{ padding:14px; }
+.mock-pitch .pt-stat{ font-size:9.5px; font-weight:700; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.03em; }
+.mock-pitch .pt-steps{ display:flex; align-items:flex-start; margin-top:12px; }
+.mock-pitch .pt-step{ flex:1; text-align:center; position:relative; }
+.mock-pitch .pt-conn{ position:absolute; top:8px; left:-50%; width:100%; height:2px; background:var(--border); z-index:0; }
+.mock-pitch .pt-step:first-child .pt-conn{ display:none; }
+.mock-pitch .pt-step.done .pt-conn{ background:var(--c-pitch); }
+.mock-pitch .pt-dot{ position:relative; z-index:1; width:18px; height:18px; border-radius:50%; background:var(--surface-2); border:2px solid var(--border); margin:0 auto; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:700; color:var(--text-faint); }
+.mock-pitch .pt-step.done .pt-dot{ background:var(--c-pitch); border-color:var(--c-pitch); color:#fff; }
+.mock-pitch .pt-step.current .pt-dot{ background:var(--surface); border-color:var(--c-pitch); color:var(--c-pitch); box-shadow:0 0 0 3px color-mix(in srgb, var(--c-pitch) 22%, transparent); }
+.mock-pitch .pt-slbl{ font-size:7.5px; font-weight:700; color:var(--text-faint); margin-top:5px; text-transform:uppercase; letter-spacing:0.02em; }
+.mock-pitch .pt-who{ display:flex; align-items:center; gap:7px; margin-top:14px; }
+.mock-pitch .pt-av{ width:20px; height:20px; border-radius:50%; background:var(--c-pitch); color:#fff; font-size:9px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.mock-pitch .pt-name{ font-size:10.5px; font-weight:700; color:var(--text-soft); }
+.mock-pitch .pt-tag{ font-size:9px; color:var(--text-faint); }
+.mock-pitch h5{ font-family:'Newsreader',serif; font-size:13.5px; margin-top:8px; color:var(--text); }
+.mock-pitch .pt-line{ font-size:11px; color:var(--text-soft); margin-top:5px; }
+
+/* train & deploy, skill module to real deployment */
+.mock-traindeploy .td-body{ padding:14px; }
+.mock-traindeploy .td-top{ font-size:10px; font-weight:700; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.05em; }
+.mock-traindeploy h5{ font-family:'Newsreader',serif; font-size:13.5px; margin-top:4px; color:var(--text); }
+.mock-traindeploy .td-steps{ display:flex; align-items:flex-start; margin-top:14px; }
+.mock-traindeploy .td-step{ flex:1; text-align:center; position:relative; }
+.mock-traindeploy .td-line{ position:absolute; top:9px; left:-50%; width:100%; height:2px; background:var(--border); z-index:0; }
+.mock-traindeploy .td-step:first-child .td-line{ display:none; }
+.mock-traindeploy .td-step.done .td-line{ background:var(--c-traindeploy); }
+.mock-traindeploy .td-dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%; background:var(--surface-2); border:2px solid var(--border); margin:0 auto; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:var(--text-faint); }
+.mock-traindeploy .td-step.done .td-dot{ background:var(--c-traindeploy); border-color:var(--c-traindeploy); color:#fff; }
+.mock-traindeploy .td-step.current .td-dot{ background:var(--surface); border-color:var(--c-traindeploy); color:var(--c-traindeploy); box-shadow:0 0 0 3px color-mix(in srgb, var(--c-traindeploy) 20%, transparent); }
+.mock-traindeploy .td-lbl{ font-size:8.5px; font-weight:700; color:var(--text-faint); margin-top:5px; text-transform:uppercase; letter-spacing:0.03em; }
+.mock-traindeploy .td-note{ font-size:11px; color:var(--text-soft); margin-top:13px; line-height:1.5; }
+
+/* ama */
+.mock-ama .am-body{ padding:13px 14px; }
+.mock-ama .am-q{ background:var(--surface-2); padding:8px 10px; font-size:11px; color:var(--text-soft); max-width:85%; }
+.mock-ama .am-a{ background:var(--ink); color:var(--porcelain); padding:8px 10px; font-size:11px; margin-top:8px; margin-left:15%; }
+.mock-ama .am-badge{ font-size:8.5px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:3px; }
+.mock-ama .am-foot{ font-size:10.5px; color:var(--text-faint); margin-top:10px; }
+
+/* podcast */
+.mock-podcast .pd-body{ padding:14px; }
+.mock-podcast .pd-wave{ display:flex; align-items:flex-end; gap:2px; height:34px; }
+.mock-podcast .pd-wave i{ width:3px; background:var(--c-podcast); opacity:0.75; }
+.mock-podcast h5{ font-family:'Newsreader',serif; font-size:13.5px; margin-top:10px; color:var(--text); }
+.mock-podcast .pd-meta{ font-size:10.5px; color:var(--text-faint); margin-top:4px; }
+.mock-podcast .pd-play{ width:24px; height:24px; border-radius:50%; background:var(--c-podcast); display:flex; align-items:center; justify-content:center; margin-top:10px; }
+.mock-podcast .pd-play svg{ width:9px; height:9px; }
+
+/* spotlight */
+.mock-spotlight .sp-body{ padding:16px 14px; text-align:center; }
+.mock-spotlight .sp-star{ width:22px; height:22px; color:var(--c-spotlight); margin:0 auto; }
+.mock-spotlight blockquote{ font-family:'Newsreader',serif; font-style:italic; font-size:12.5px; color:var(--text); margin:10px 0 0; line-height:1.5; }
+.mock-spotlight .sp-who{ font-size:10.5px; color:var(--text-faint); margin-top:8px; }
+
+.other-note{ margin-top:24px; background:var(--surface-2); border-left:3px solid var(--accent); padding:16px 18px; font-size:13px; color:var(--text-soft); line-height:1.65; }
+
+.review-inbox{ margin-top:22px; border:1px solid var(--border); background:var(--surface); }
+.review-inbox-head{ display:flex; align-items:center; gap:8px; padding:11px 16px; border-bottom:1px solid var(--border); background:var(--surface-2); }
+.review-inbox-head svg{ width:14px; height:14px; color:var(--accent-strong); flex:none; }
+.review-inbox-head span{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-faint); }
+.review-row{ display:flex; gap:16px; padding:12px 16px; border-bottom:1px solid var(--border); }
+.review-row:last-child{ border-bottom:none; }
+.review-who{ flex:0 0 168px; font-size:11.5px; font-weight:700; color:var(--text); line-height:1.4; }
+.review-when{ display:block; margin-top:2px; font-size:10px; font-weight:600; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.04em; }
+.review-what{ flex:1; font-size:12.5px; color:var(--text-soft); line-height:1.55; }
+@media (max-width:620px){ .review-row{ flex-direction:column; gap:4px; } .review-who{ flex:none; } }
+
+/* ---------- the conversion (section 04) ---------- */
+.result-flow{ display:flex; align-items:stretch; margin-top:8px; border:1px solid var(--border); background:var(--surface); }
+.rf-col{ flex:1; padding:22px 24px; }
+.rf-col-head{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-faint); margin-bottom:14px; }
+.rf-channels{ display:flex; flex-wrap:wrap; gap:7px; }
+.rf-chip{ display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:600; padding:6px 10px; border:1px solid var(--border); color:var(--text-soft); }
+.rf-chip .fdot{ width:7px; height:7px; border-radius:50%; flex:none; }
+.rf-arrow{ flex:0 0 108px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 14px; border-left:1px solid var(--border); border-right:1px solid var(--border); background:var(--surface-2); }
+.rf-arrow-line{ width:100%; height:1px; background:var(--accent-strong); position:relative; }
+.rf-arrow-line::after{ content:""; position:absolute; right:0; top:50%; width:7px; height:7px; border-right:2px solid var(--accent-strong); border-top:2px solid var(--accent-strong); transform:translateY(-50%) rotate(45deg); }
+.rf-arrow-label{ margin-top:11px; font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--accent-strong); text-align:center; white-space:nowrap; }
+.rf-results{ display:flex; flex-direction:column; gap:11px; }
+.rf-result{ font-size:12.5px; color:var(--text-soft); line-height:1.5; }
+.rf-result b{ color:var(--text); }
+@media (max-width:760px){
+  .result-flow{ flex-direction:column; }
+  .rf-arrow{ flex-direction:row; padding:12px 0; border-left:none; border-right:none; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .rf-arrow-line{ width:50px; height:1px; }
+  .rf-arrow-line::after{ transform:translateY(-50%) rotate(45deg); }
+  .rf-arrow-label{ margin-top:0; margin-left:12px; }
+}
+.growth-chart{ margin-top:34px; background:var(--surface); border:1px solid var(--border); padding:28px 20px 18px; }
+.growth-bar-row{ display:flex; align-items:flex-end; gap:14px; height:150px; padding:26px 4px 0; border-bottom:1px solid var(--border); }
+.growth-bar{ flex:1; min-height:4px; background:var(--accent); border-radius:4px 4px 0 0; position:relative; }
+.growth-val{ position:absolute; top:-22px; left:0; right:0; text-align:center; font-size:11px; font-weight:700; color:var(--accent-strong); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.growth-labels{ display:flex; gap:14px; padding:0 4px; margin-top:9px; }
+.growth-labels span{ flex:1; text-align:center; font-size:10.5px; color:var(--text-faint); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; }
+.growth-caption{ margin-top:14px; font-size:11.5px; color:var(--text-faint); font-style:italic; text-align:center; }
+
+.result-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:22px 0 34px; }
+.result-stat{ background:var(--surface); border:1px solid var(--border); padding:18px 20px; }
+.result-stat .num{ font-family:'Newsreader',serif; font-size:23px; color:var(--accent-strong); font-weight:600; line-height:1.25; }
+.result-stat .lbl{ margin-top:6px; font-size:11.5px; color:var(--text-faint); font-weight:600; line-height:1.4; }
+@media (max-width:820px){ .result-stats{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){ .result-stats{ grid-template-columns:1fr; } }
+
+.convert-table-wrap{ overflow-x:auto; border:1px solid var(--border); }
+.convert-table{ width:100%; border-collapse:collapse; min-width:640px; }
+.convert-table th{ text-align:left; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-faint); background:var(--surface-2); padding:11px 14px; border-bottom:1px solid var(--border); }
+.convert-table td{ font-size:12.5px; color:var(--text-soft); line-height:1.5; padding:13px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+.convert-table tbody tr:last-child td{ border-bottom:none; }
+.convert-table td:first-child{ color:var(--text); font-weight:600; white-space:nowrap; }
+.convert-table .fdot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; }
+@media (max-width:640px){ .convert-table td:first-child{ white-space:normal; } }
+
+/* ---------- capability model ---------- */
+button:focus-visible, summary:focus-visible{ outline:2px solid var(--accent-strong); outline-offset:2px; }
+.model-strip{ margin:40px 0 22px; border:1px solid var(--border); background:var(--surface); padding:16px 20px; }
+.ms-head{ font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); margin-bottom:10px; }
+.ms-steps{ display:flex; flex-wrap:wrap; align-items:baseline; row-gap:6px; }
+.ms-step{ font-family:'Newsreader',serif; font-size:15px; color:var(--text); }
+.ms-step.cap{ color:var(--accent-strong); }
+.ms-item{ display:inline-flex; align-items:baseline; white-space:nowrap; }
+.ms-sep{ color:var(--accent-strong); font-size:12px; margin:0 9px; }
+.ms-note{ margin-top:10px; font-size:12.5px; color:var(--text-soft); line-height:1.6; max-width:720px; }
+
+.month-tab{ display:flex; flex-direction:column; align-items:flex-start; gap:2px; text-align:left; }
+.month-tab .mt-cap{ font-size:10.5px; font-weight:500; letter-spacing:0; opacity:0.85; }
+
+.cap-brief{ display:grid; grid-template-columns:1.55fr 1fr; background:var(--surface); border:1px solid var(--border); border-top:3px solid var(--accent-strong); margin-bottom:24px; }
+@media (max-width:700px){ .cap-brief{ grid-template-columns:1fr; } }
+.cb-main{ padding:22px 24px 20px; }
+.cb-main h3{ margin-top:8px; font-size:clamp(23px,2.8vw,30px); line-height:1.2; color:var(--text); }
+.cb-line{ margin-top:10px; font-family:'Newsreader',serif; font-style:italic; font-size:16px; line-height:1.55; color:var(--text-soft); max-width:600px; }
+.cb-note{ margin-top:12px; font-size:12px; color:var(--text-faint); line-height:1.6; }
+.cb-note b{ color:var(--accent-strong); font-weight:700; }
+.cb-arc{ margin-top:18px; display:flex; flex-wrap:wrap; align-items:flex-end; row-gap:8px; }
+.cb-arc-step{ display:flex; flex-direction:column; font-family:'Newsreader',serif; font-size:14px; color:var(--text); }
+.cb-arc-wk{ font-family:'Inter',sans-serif; font-size:9.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); }
+.cb-arc-item{ display:inline-flex; align-items:flex-end; white-space:nowrap; }
+.cb-arc-sep{ color:var(--accent-strong); font-size:12px; margin:0 12px 2px; }
+.cb-side{ padding:20px 22px; background:var(--surface-2); border-left:1px solid var(--border); }
+@media (max-width:700px){ .cb-side{ border-left:none; border-top:1px solid var(--border); } }
+.cb-lbl{ font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); }
+.cb-voices{ list-style:none; margin:8px 0 18px; padding:0; }
+.cb-voices li{ font-size:12.5px; color:var(--text); padding:5px 0; border-bottom:1px solid var(--border); }
+.cb-voices li:last-child{ border-bottom:none; }
+.cb-skills{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.cb-skill{ font-size:10.5px; font-weight:600; padding:4px 9px; border:1px solid var(--border); color:var(--text-soft); background:var(--surface); }
+
+.week-tab{ display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-align:left; }
+.week-tab .wt-top{ font-size:11px; }
+.week-tab .wt-theme{ font-family:'Newsreader',serif; font-style:italic; font-weight:400; font-size:14.5px; letter-spacing:0; }
+.week-intent{ font-family:'Newsreader',serif; font-size:19px; color:var(--text); margin-bottom:4px; }
+
+.slot .stxt .fvoice{ display:block; margin-top:6px; font-size:11px; color:var(--text-faint); }
+.slot.flagship .fvoice{ color:#E7DFD3; }
+.slot[aria-pressed="true"]{ border-color:var(--accent-strong); box-shadow:inset 3px 0 0 var(--accent-strong); }
+.slot.flagship[aria-pressed="true"]{ box-shadow:inset 3px 0 0 var(--amber); }
+
+.slot-detail{ margin-top:12px; display:grid; grid-template-columns:1.5fr 1fr; background:var(--surface); border:1px solid var(--border); }
+@media (max-width:700px){ .slot-detail{ grid-template-columns:1fr; } }
+.sd-main{ padding:20px 22px; }
+.sd-type{ display:flex; align-items:center; gap:7px; font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); }
+.sd-type .fdot{ width:8px; height:8px; border-radius:50%; flex:none; }
+.sd-title{ margin-top:8px; font-size:20px; line-height:1.3; color:var(--text); }
+.sd-content{ margin-top:10px; font-size:14px; line-height:1.65; color:var(--text-soft); max-width:560px; }
+.sd-voice{ margin-top:12px; font-family:'Newsreader',serif; font-style:italic; font-size:14px; color:var(--text); }
+.sd-voice span{ font-family:'Inter',sans-serif; font-style:normal; font-size:10px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); margin-right:8px; }
+.sd-fmt{ margin-top:16px; font-size:11px; font-weight:700; padding:6px 12px; background:none; border:1px solid var(--border); color:var(--accent-strong); cursor:pointer; }
+.sd-fmt:hover{ border-color:var(--accent-strong); }
+.sd-side{ background:var(--surface-2); border-left:1px solid var(--border); padding:8px 20px; display:flex; flex-direction:column; }
+@media (max-width:700px){ .sd-side{ border-left:none; border-top:1px solid var(--border); } }
+.sd-row{ padding:11px 0; border-bottom:1px solid var(--border); }
+.sd-row:last-child{ border-bottom:none; }
+.sd-lbl{ font-size:10px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); }
+.sd-val{ margin-top:4px; font-size:13px; color:var(--text); line-height:1.45; }
+.sd-conv{ font-family:'Newsreader',serif; font-size:15px; }
+.res-tag{ display:inline-block; font-size:11px; font-weight:700; padding:4px 9px; border:1px solid var(--border); color:var(--text); background:var(--surface); white-space:nowrap; }
+.res-tag.key{ border-color:var(--accent-strong); color:var(--accent-strong); }
+.res-tags{ display:flex; flex-wrap:wrap; gap:5px; }
+
+.ej-head{ display:flex; align-items:baseline; justify-content:space-between; gap:8px 20px; flex-wrap:wrap; margin-bottom:8px; }
+.ej-head h3{ font-size:19px; color:var(--text); }
+.ej-cap{ font-size:11px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--accent-strong); }
+.ej-result{ display:inline-block; margin-left:7px; font-family:'Inter',sans-serif; font-size:8.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:2px 6px; border:1px solid currentColor; vertical-align:2px; }
+.ej-col.early .ej-result{ color:var(--c-traindeploy); }
+.ej-col.exp .ej-result{ color:var(--accent-strong); }
+
+.cp-open{ padding:12px 16px; }
+.cp-open-btn{ font-size:11.5px; font-weight:700; padding:7px 13px; background:none; border:1px solid var(--accent-strong); color:var(--accent-strong); cursor:pointer; }
+
+.rf-ladder{ display:flex; flex-wrap:wrap; gap:6px; }
+.rf-res{ font-size:11.5px; font-weight:600; padding:6px 10px; border:1px solid var(--border); color:var(--text-soft); background:var(--surface-2); }
+.rf-res.key{ border-color:var(--accent-strong); color:var(--accent-strong); background:transparent; }
+.rf-adds{ margin-top:20px; padding-top:16px; border-top:1px dashed var(--border); }
+.convert-table .conv{ font-family:'Newsreader',serif; font-size:14px; color:var(--text); white-space:nowrap; }
+.result-defs{ margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:760px){ .result-defs{ grid-template-columns:1fr; } }
+.result-def{ background:var(--surface); border:1px solid var(--border); border-top:3px solid var(--accent-strong); padding:18px 20px; }
+.result-def.td{ border-top-color:var(--c-traindeploy); }
+.result-def .rd-lbl{ font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-faint); }
+.result-def h4{ margin-top:6px; font-size:18px; color:var(--text); }
+.result-def p{ margin-top:8px; font-size:13px; color:var(--text-soft); line-height:1.6; }
+
+
+/* ---------- interaction states ---------- */
+.month-tab, .week-tab, .track-btn, .cluster-tab, .slot, .sd-fmt, .cp-open-btn, .lib-detail summary{
+  transition:background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.month-tab[aria-pressed="true"], .week-tab[aria-pressed="true"], .track-btn[aria-pressed="true"], .cluster-tab[aria-pressed="true"]{ cursor:default; }
+@media (hover:hover) and (pointer:fine){
+  .month-tab:not([aria-pressed="true"]):hover,
+  .week-tab:not([aria-pressed="true"]):hover,
+  .cluster-tab:not([aria-pressed="true"]):hover,
+  .track-btn:not([aria-pressed="true"]):hover{ background:var(--surface-2); border-color:var(--accent-strong); color:var(--text); }
+  .week-tab:not([aria-pressed="true"]):hover .wt-theme{ color:var(--accent-strong); }
+  .month-tab:not([aria-pressed="true"]):hover .mt-cap{ color:var(--accent-strong); opacity:1; }
+  .slot:hover{ border-color:var(--accent-strong); background:var(--surface-2); }
+  .slot:hover .ftitle{ color:var(--accent-strong); }
+  .slot.flagship:hover{ background:linear-gradient(120deg, var(--ink) 0%, var(--terracotta) 100%); border-color:var(--amber); }
+  .slot.flagship:hover .ftitle{ color:var(--amber); }
+  .sd-fmt:hover, .cp-open-btn:hover{ background:var(--accent-strong); border-color:var(--accent-strong); color:#fff; }
+  .lib-detail summary:hover{ color:var(--text); text-decoration:underline; text-underline-offset:3px; }
+}
+.month-tab:not([aria-pressed="true"]):active, .week-tab:not([aria-pressed="true"]):active,
+.cluster-tab:not([aria-pressed="true"]):active, .track-btn:not([aria-pressed="true"]):active,
+.slot:active{ background:var(--surface-2); border-color:var(--accent-strong); }
+.sd-fmt:active, .cp-open-btn:active{ background:var(--accent-strong); color:#fff; }
+@media (prefers-reduced-motion:reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+
+/* ---------- touch targets ---------- */
+@media (pointer:coarse){
+  .month-tab, .week-tab, .cluster-tab, .track-btn, .sd-fmt, .cp-open-btn{ min-height:44px; }
+  .track-btn, .sd-fmt, .cp-open-btn{ display:inline-flex; align-items:center; justify-content:center; }
+  .lib-detail summary{ padding:8px 0; font-size:11px; }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width:1024px){
+  .calendar-toolbar .month-tabs{ width:100%; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .track-filter{ margin-left:0; width:100%; }
+}
+@media (max-width:900px){
+  .week-tabs{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .week-tab{ padding:9px 12px; }
+}
+
+@media (max-width:1024px){
+  .slot{ position:relative; }
+  .slot .strack{ position:absolute; top:12px; right:12px; margin:0; }
+  .slot:has(.strack) .ftype{ padding-right:86px; }
+}
+
+/* ---------- phone ---------- */
+@media (max-width:600px){
+  section{ padding:48px 0; }
+  .calendar-toolbar .month-tabs{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .track-filter{ padding:10px; }
+  .track-filter-lbl{ width:100%; }
+  .track-btn{ flex:1 1 0; text-align:center; padding:8px 6px; }
+  .week-tabs{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cluster-tabs{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cluster-tab{ text-align:left; }
+  .model-strip{ padding:14px 16px; }
+  .cb-main{ padding:20px 18px; }
+  .cb-side, .sd-side{ padding-left:18px; padding-right:18px; }
+  .sd-main{ padding:18px; }
+  .week-intent{ font-size:17px; }
+  .exp-journey{ padding:18px 16px; }
+  .rf-col{ padding:18px; }
+}
+@media (max-width:640px){
+  .convert-table-wrap{ overflow:visible; border:none; }
+  .convert-table{ min-width:0; }
+  .convert-table thead{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  .convert-table, .convert-table tbody, .convert-table tr, .convert-table td{ display:block; width:100%; }
+  .convert-table tr{ background:var(--surface); border:1px solid var(--border); margin-bottom:10px; padding:4px 0; }
+  .convert-table td{ border-bottom:none; padding:7px 14px; display:grid; grid-template-columns:104px 1fr; gap:10px; }
+  .convert-table td::before{ content:attr(data-label); font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--text-faint); padding-top:2px; }
+  .convert-table td:first-child{ display:block; font-family:'Newsreader',serif; font-size:16px; font-weight:500; padding-top:12px; border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:4px; }
+  .convert-table td:first-child::before{ content:none; }
+  .convert-table .conv{ white-space:normal; }
+}
+@media (max-width:400px){
+  .growth-bar-row, .growth-labels{ gap:8px; }
+  .growth-val{ font-size:10px; }
+  .growth-labels span{ font-size:9.5px; }
+}
+
+/* ---------- close ---------- */
+.close{ padding:64px 0 72px; text-align:center; }
+.close .wordmark{ font-size:22px; justify-content:center; }
+.close-h{ margin:16px auto 0; max-width:640px; font-size:clamp(22px,3vw,30px); line-height:1.25; color:var(--text); }
+.close-around{ max-width:600px; margin:14px auto 0; font-family:'Newsreader',serif; font-style:italic; font-size:15.5px; line-height:1.6; color:var(--text-soft); }
+.close-arc{ max-width:900px; margin:34px auto 0; display:grid; grid-template-columns:repeat(3,1fr); background:var(--surface); border:1px solid var(--border); text-align:left; }
+@media (max-width:760px){ .close-arc{ grid-template-columns:1fr; } }
+.arc-step{ padding:22px 22px 24px; border-top:3px solid var(--slate); border-left:1px solid var(--border); }
+.arc-step:first-child{ border-left:none; }
+.arc-step.engage{ border-top-color:var(--accent); }
+.arc-step.hire{ border-top-color:var(--accent-strong); }
+@media (max-width:760px){ .arc-step{ border-left:none; } }
+.arc-step h3{ font-size:22px; color:var(--text); }
+.arc-step p{ margin-top:8px; font-size:13px; color:var(--text-soft); line-height:1.6; }
+.close-line{ max-width:560px; margin:30px auto 0; font-size:14px; color:var(--text-soft); line-height:1.7; }
+.close .cover-tagline{ margin-top:22px; color:var(--accent-strong); }
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="icon-verify" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 5-3.4 8.4-7 10-3.6-1.6-7-5-7-10V5l7-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="icon-network" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="12" cy="5" r="2.5"/><line x1="7.6" y1="16.3" x2="10.6" y2="7.4"/><line x1="16.4" y1="16.3" x2="13.4" y2="7.4"/><line x1="8.5" y1="18" x2="15.5" y2="18"/></symbol>
+    <symbol id="icon-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><path d="M6 15l2.5 2.5 3-5 2 2.5 3-4"/></symbol>
+    <symbol id="icon-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="4" rx="1"/><rect x="5" y="9" width="14" height="10" rx="1"/><line x1="10" y1="13" x2="14" y2="13"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.6"/><line x1="12" y1="1.8" x2="12" y2="4.6"/><line x1="12" y1="19.4" x2="12" y2="22.2"/><line x1="1.8" y1="12" x2="4.6" y2="12"/><line x1="19.4" y1="12" x2="22.2" y2="12"/></symbol>
+    <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.3"/><circle cx="18" cy="18" r="2.3"/><circle cx="12" cy="6" r="2.3"/><line x1="7.7" y1="16.5" x2="10.4" y2="8"/><line x1="16.3" y1="16.5" x2="13.6" y2="8"/></symbol>
+    <symbol id="icon-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.8 21 3 12.2 3 3c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1l-2.2 2.3z"/></symbol>
+    <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="icon-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="icon-venn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+    <symbol id="icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="icon-hub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.6"/><circle cx="12" cy="3.5" r="1.8"/><circle cx="20.5" cy="17" r="1.8"/><circle cx="3.5" cy="17" r="1.8"/><line x1="12" y1="9.6" x2="12" y2="5.3"/><line x1="14.2" y1="13.4" x2="18.8" y2="15.9"/><line x1="9.8" y1="13.4" x2="5.2" y2="15.9"/></symbol>
+    <symbol id="icon-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="15" r="4"/><path d="M10.5 11.5L20 2"/><path d="M15 7l3 3"/><path d="M18 4l3 3"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></symbol>
+  </defs>
+</svg>
+
+<div class="cover">
+  <svg class="cover-mark" viewBox="0 0 2149 1080" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2003.25 79.5C2098.09 180.717 2148.22 295.642 2148.6 412.696C2148.97 529.749 2099.57 644.797 2005.38 746.246C1911.19 847.695 1775.53 931.962 1612.06 990.556C1448.6 1049.15 1263.12 1080 1074.3 1080C885.48 1080 699.995 1049.15 536.535 990.556C373.074 931.962 237.413 847.695 143.219 746.246C49.0257 644.797 -0.372422 529.749 0.00211404 412.696C0.37665 295.642 50.5106 180.717 145.353 79.5L275.45 126.334C193.869 213.379 150.738 312.217 150.404 412.888C150.07 513.559 192.545 612.507 273.548 699.759C354.552 787.012 471.222 859.488 611.803 909.883C752.383 960.279 911.907 986.813 1074.3 986.813C1236.69 986.813 1396.22 960.279 1536.8 909.883C1677.38 859.488 1794.05 787.012 1875.05 699.759C1956.05 612.507 1998.53 513.559 1998.2 412.888C1997.86 312.217 1954.73 213.379 1873.15 126.334L2003.25 79.5Z"/>
+    <path d="M1743.16 173.168C1811.44 246.044 1847.53 328.789 1847.79 413.066C1848.06 497.343 1812.49 580.175 1744.67 653.215C1676.85 726.256 1579.17 786.926 1461.48 829.112C1343.79 871.298 1210.25 893.51 1074.3 893.51C938.352 893.51 804.806 871.298 687.116 829.112C569.427 786.926 471.751 726.256 403.93 653.215C336.11 580.175 300.54 497.343 300.805 413.066C301.071 328.789 337.161 246.044 405.441 173.168L499.227 206.896C440.541 269.554 409.527 340.693 409.309 413.148C409.092 485.602 439.679 556.812 497.988 619.605C556.298 682.397 640.27 734.554 741.447 770.82C842.623 807.086 957.429 826.181 1074.3 826.181C1191.17 826.181 1305.98 807.086 1407.15 770.82C1508.33 734.554 1592.3 682.397 1650.61 619.605C1708.92 556.812 1739.51 485.602 1739.29 413.148C1739.07 340.693 1708.06 269.554 1649.37 206.896L1743.16 173.168Z"/>
+    <path d="M1555.48 240.625C1604.61 293.062 1630.59 352.601 1630.79 413.244C1630.98 473.887 1605.4 533.492 1556.61 586.051C1507.82 638.611 1437.54 682.268 1352.87 712.625C1268.19 742.982 1172.11 758.966 1074.3 758.966C976.488 758.966 880.405 742.982 795.731 712.625C711.057 682.268 640.784 638.611 591.992 586.051C543.201 533.492 517.616 473.887 517.814 413.244C518.012 352.601 543.987 293.062 593.121 240.625L659.942 264.794C617.661 309.934 595.318 361.185 595.163 413.382C595.008 465.579 617.048 516.88 659.061 562.116C701.075 607.352 761.578 644.926 834.477 671.053C907.375 697.179 990.094 710.935 1074.3 710.935C1158.51 710.935 1241.22 697.179 1314.12 671.053C1387.02 644.926 1447.52 607.352 1489.54 562.116C1531.55 516.88 1553.59 465.579 1553.44 413.382C1553.28 361.185 1530.94 309.934 1488.66 264.794L1555.48 240.625Z"/>
+    <path d="M1074.3 322.251C1163.3 322.251 1235.45 250.112 1235.45 161.125C1235.45 72.1383 1163.3 0 1074.3 0C985.303 0 913.156 72.1383 913.156 161.125C913.156 250.112 985.303 322.251 1074.3 322.251Z"/>
+  </svg>
+  <div class="wrap cover-inner">
+    <div class="wordmark">Wei<span class="ta">TA</span></div>
+    <div class="cover-kicker">The Engagement Calendar</div>
+    <h1 class="cover-h">Your Capability. <em>Alive, Every Time.</em></h1>
+    <p class="cover-sub">This walks you through how WeiTA Attracts, Engages and Converts: the shift from transactional hiring, started cold every time a role opens, to a capability that's already there, already warm, when you need it.</p>
+    <div class="cover-flow">
+      <div class="flow-node">
+        <div class="flow-top"><div class="flow-num">01</div><div class="flow-line"></div></div>
+        <h4><svg class="flow-icon"><use href="#icon-verify"/></svg>Who Gets In, And How</h4>
+        <p>Verified by real work, not a résumé, then reached across every channel a capability already uses.</p>
+      </div>
+      <div class="flow-node">
+        <div class="flow-top"><div class="flow-num">02</div><div class="flow-line"></div></div>
+        <h4><svg class="flow-icon"><use href="#icon-pulse"/></svg>The Cadence</h4>
+        <p>A disciplined monthly rhythm keeps the relationship live without ever asking for more than a minute at a time.</p>
+      </div>
+      <div class="flow-node">
+        <div class="flow-top"><div class="flow-num">03</div></div>
+        <h4><svg class="flow-icon"><use href="#icon-target"/></svg>The Conversion</h4>
+        <p>What comes back: a community that keeps growing, and hires drawn from it every month, not built cold each time.</p>
+      </div>
+    </div>
+    <div class="cover-tagline">Talent Decisions Driven By Conversation.</div>
+  </div>
+</div>
+
+<section id="curation">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">01 · Who Gets In, And How</div>
+      <h2>How Every Capability Enters Your Community.</h2>
+      <p>Every profile is sourced and screened through its identity before it's added to anything. That check runs first, ahead of any skill match or invitation, because a pool at real market scale (tens of thousands of relevant professionals across a market this size) is only as useful as it is relevant. Cast a wide net with no check on the way in, and reach turns into noise fast.</p>
+    </div>
+    <div class="verify-grid">
+      <div class="verify-item"><div class="verify-num">01</div><h5>Name &amp; Identity</h5><p>Confirmed, not just collected. The person is who the profile says they are before anything else runs.</p></div>
+      <div class="verify-item"><div class="verify-num">02</div><h5>Project Exposure</h5><p>What they were actually staffed on and worked inside, checked against how they describe it themselves.</p></div>
+      <div class="verify-item"><div class="verify-num">03</div><h5>Ownership</h5><p>What they personally led or built, versus what they sat near. The gap a job title alone can't show.</p></div>
+      <div class="verify-item"><div class="verify-num">04</div><h5>In Their Own Words</h5><p>Not a resume, which is trivial to produce with AI today. A short audio or video account, or something written directly by the person, so what's checked is their own record: what they did, where, with whom, and under what circumstances.</p></div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-card">
+        <div class="stage-num">01</div>
+        <h3>Fit &amp; Context</h3>
+        <p>What they actually work on today, in their own words, checked against the identity and exposure signals above before it goes anywhere. Nothing about this stage is a form to be filled in and forgotten. It's the first pass that decides which capability cluster a profile even belongs in, and it takes as long as it takes to get that right.</p>
+        <div class="stage-tag">Signal Match · Identity &amp; Exposure</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">02</div>
+        <h3>Proof Of Work</h3>
+        <p>A cluster-specific check against real work: a claims-adjudication or EDI systems walkthrough for Cloud &amp; Infra, a short applied case for AI/ML, a portfolio review for Product &amp; UX/CX, whatever that cluster actually runs day to day, in this business specifically. This is where ownership and circumstance get tested directly, not inferred from a job title.</p>
+        <div class="stage-tag">Ownership Check · Cluster-Specific</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">03</div>
+        <h3>Live Conversation</h3>
+        <p>A conversation with someone who actually works in that domain, not HR, not a generalist recruiter. This is the human check on everything the first two stages surfaced, and it's also the first real WeiTA touchpoint the professional experiences.</p>
+        <div class="stage-tag">Human Review · Domain-Led</div>
+      </div>
+    </div>
+    <div class="curation-note">This is deliberately a funnel, not a single gate. Each stage does one job, so no single yes/no decision carries the whole weight of who gets in. At the scale this community is meant to reach, that discipline is what keeps a very large pool from collapsing into a generic one: relevance is checked on the way in, not sorted out after the fact.</div>
+  </div>
+</section>
+
+<section id="infrastructure">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">02 · The Infrastructure, Three Phases</div>
+      <h2>How Your Community Grows, Phase By Phase.</h2>
+      <p>Three phases, each one carrying forward what the last one built, not replacing it.</p>
+    </div>
+    <div class="phase-row">
+      <div class="phase-card active">
+        <span class="phase-badge">Phase 1</span>
+        <div class="phase-label">Reach</div>
+        <h3>Direct Sourcing, At Volume</h3>
+        <p>Direct LinkedIn and Naukri outreach by cluster, cold outreach to passive professionals, content built around real project work, and mass email, all feeding straight into the curation funnel that screens everyone it reaches.</p>
+        <div class="chip-row"><span class="chan-chip"><svg class="chan-icon"><use href="#icon-linkedin"/></svg>LinkedIn</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-briefcase"/></svg>Naukri</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-phone"/></svg>Cold Outreach</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-doc"/></svg>Content</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-mail"/></svg>Mass Email</span></div>
+      </div>
+      <div class="phase-card active">
+        <span class="phase-badge">Phase 2</span>
+        <div class="phase-label">Compound</div>
+        <h3>Referral &amp; Peer Programs</h3>
+        <p>Once there's a real base, growth shifts to the people already in it: referral incentives, peer nomination straight into Proof of Work, and direct partnerships with practitioners, adjacent communities and newsletters that already hold an audience inside a given cluster.</p>
+        <div class="chip-row"><span class="chan-chip"><svg class="chan-icon"><use href="#icon-message"/></svg>WhatsApp</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-repeat"/></svg>Referral Portal</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-users"/></svg>Peer Nomination</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-venn"/></svg>Lookalike Communities</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-link"/></svg>Partner Reach</span></div>
+      </div>
+      <div class="phase-card active">
+        <span class="phase-badge mine">Phase 3</span>
+        <div class="phase-label">Sustain</div>
+        <h3>Recognition &amp; Advocacy Tier</h3>
+        <p>The top 3 to 5% most engaged members per cluster move into a named tier: first look at roadmap briefings, invite-only sessions with your own domain leads, and public recognition, the engine that feeds Phase 2's referrals without new spend.</p>
+        <div class="chip-row"><span class="chan-chip"><svg class="chan-icon"><use href="#icon-hub"/></svg>Community Platform</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-key"/></svg>Direct Access</span><span class="chan-chip"><svg class="chan-icon"><use href="#icon-star"/></svg>Named Status</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calendar">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">03 · The Cadence &amp; Format Library</div>
+      <h2>Calibrated To The Audience, Not Asserted.</h2>
+      <p>Nobody in a recruiting function decides what shows up here, that's the actual point. Every format below is built or vetted by people who do this work day to day: engineers, architects, delivery leads, not a generic content or talent-acquisition desk that's never touched a claims pipeline or a FHIR integration and it shows the moment they try to write about one. That's also why the cadence stays tight rather than heavy, this audience is senior, largely passive, and tunes out fast from anything that reads like it was written by someone without the depth to have actually done the work. Six months are shown here, October through March, each one led by a different capability cluster, so the mix visibly rotates instead of repeating the same four formats on a loop. The capability isn't a label on top. It decides what gets discussed, who leads it, which format fits, and what the relationship can turn into.</p>
+    </div>
+
+    <div class="lib-head" style="margin-bottom:0;">
+      <div>
+        <div class="eyebrow">Eight Formats, Rotating By Design</div>
+        <h3>Not Eight Random Content Types, Eight Different Jobs</h3>
+      </div>
+      <p>Each one recurs monthly, at feature level rather than as a frequency count, so no single month is carrying all its weight on one format.</p>
+    </div>
+    <div class="variety-grid">
+      <div class="variety-item"><span class="variety-num">01</span><h5>Publications &amp; Articles</h5><p>Field notes written by the practitioner who lived the incident, not a content desk.</p></div>
+      <div class="variety-item"><span class="variety-num">02</span><h5>Leadership Access</h5><p>Unscripted video and an async AMA thread, what's actually happening, not a corporate reel.</p></div>
+      <div class="variety-item"><span class="variety-num">03</span><h5>Marketing &amp; External Content</h5><p>The research briefs and state-of-the-community pieces that also travel outside the community.</p></div>
+      <div class="variety-item"><span class="variety-num">04</span><h5>Organization-Relevant Briefings</h5><p>Content tied to what that cluster is actually building here, not generic industry commentary.</p></div>
+      <div class="variety-item"><span class="variety-num">05</span><h5>Skill-Building</h5><p>Expert Sessions, Technical Deep Dives and Group Projects, kept current by the engineers who run these systems. Train &amp; Deploy is where they lead, not what they are.</p></div>
+      <div class="variety-item"><span class="variety-num">06</span><h5>Recognition</h5><p>Peer-nominated spotlights and the Phase 3 advocacy tier, named, not a template shout-out.</p></div>
+      <div class="variety-item"><span class="variety-num">07</span><h5>Peer &amp; Referral Programs</h5><p>Speed Mentoring, peer nomination, roundtables, the formats members run for each other.</p></div>
+      <div class="variety-item"><span class="variety-num">08</span><h5>The Monthly Flagship</h5><p>One live, high-effort format a month, a Hackathon, Build Day or case challenge, never more.</p></div>
+    </div>
+
+    <p class="cluster-map-note">The eight formats above, and the Week 1 to Week 4 rhythm below, stay constant every month. The capability changes what's inside them: the conversation, the people leading it, the problem on the table, and what it can lead to. Pick a cluster to see the same formats take its shape.</p>
+    <div class="cluster-tabs" role="tablist" aria-label="Select capability cluster">
+      <button class="cluster-tab" data-cluster="aiml" role="tab">AI/ML &amp; Data Science</button>
+      <button class="cluster-tab" data-cluster="cloud" role="tab">Cloud &amp; Infrastructure Engineering</button>
+      <button class="cluster-tab" data-cluster="fullstack" role="tab">Full-Stack &amp; Software Engineering</button>
+      <button class="cluster-tab" data-cluster="security" role="tab">Security &amp; Risk (InfoSec)</button>
+      <button class="cluster-tab" data-cluster="product" role="tab">Product &amp; UX/CX</button>
+      <button class="cluster-tab" data-cluster="clinical" role="tab">Clinical &amp; Healthcare Professionals</button>
+      <button class="cluster-tab" data-cluster="corpops" role="tab">Corporate &amp; Business Operations</button>
+      <button class="cluster-tab" data-cluster="support" role="tab">Customer &amp; Support Services</button>
+    </div>
+
+    <div class="cluster-panel">
+      <div class="cluster-panel-head">
+        <h5 id="cluster-panel-title">Cloud &amp; Infrastructure Engineering</h5>
+        <span class="cluster-panel-month" id="cluster-panel-month">Anchors October</span>
+      </div>
+      <div class="cluster-panel-rows" id="cluster-panel-rows"></div>
+    </div>
+    <p class="cluster-map-footnote">The formats and the Week 1 to Week 4 rhythm stay exactly the same underneath. Clinical &amp; Healthcare Professionals and Customer &amp; Support Services lead their own month from April onward, once the calendar runs past March.</p>
+
+    <div class="model-strip">
+      <div class="ms-head">How To Read Every Month</div>
+      <div class="ms-steps">
+        <span class="ms-item"><span class="ms-step">Month</span><span class="ms-sep" aria-hidden="true">→</span></span>
+        <span class="ms-item"><span class="ms-step cap">Capability</span><span class="ms-sep" aria-hidden="true">→</span></span>
+        <span class="ms-item"><span class="ms-step">Audience</span><span class="ms-sep" aria-hidden="true">→</span></span>
+        <span class="ms-item"><span class="ms-step">Engagement</span><span class="ms-sep" aria-hidden="true">→</span></span>
+        <span class="ms-item"><span class="ms-step">Content</span><span class="ms-sep" aria-hidden="true">→</span></span>
+        <span class="ms-item"><span class="ms-step">How It Converts</span><span class="ms-sep" aria-hidden="true">→</span></span>
+        <span class="ms-item"><span class="ms-step">Result</span></span>
+      </div>
+      <p class="ms-note">Pick a month to see its capability. Pick a week to see its purpose. Pick any engagement to see who it's for, who leads it, what's actually inside it, and what it can create.</p>
+    </div>
+
+    <div class="calendar-toolbar" id="calendar-toolbar">
+      <div class="month-tabs" role="tablist" aria-label="Select month">
+        <button class="month-tab" data-month="oct" role="tab">Oct '26<span class="mt-cap">Cloud &amp; Infra</span></button>
+        <button class="month-tab" data-month="nov" role="tab">Nov '26<span class="mt-cap">AI/ML &amp; Data</span></button>
+        <button class="month-tab" data-month="dec" role="tab">Dec '26<span class="mt-cap">Full-Stack</span></button>
+        <button class="month-tab" data-month="jan" role="tab">Jan '27<span class="mt-cap">Security &amp; Risk</span></button>
+        <button class="month-tab" data-month="feb" role="tab">Feb '27<span class="mt-cap">Product &amp; UX/CX</span></button>
+        <button class="month-tab" data-month="mar" role="tab">Mar '27<span class="mt-cap">Business Ops</span></button>
+      </div>
+      <div class="track-filter" role="group" aria-label="Filter by experience track">
+        <span class="track-filter-lbl">View As</span>
+        <button class="track-btn" data-track="both" aria-pressed="true">Both Tracks</button>
+        <button class="track-btn" data-track="exp" aria-pressed="false">Experienced &amp; Expert</button>
+        <button class="track-btn" data-track="early" aria-pressed="false">Early-Career</button>
+      </div>
+    </div>
+    <p class="track-desc" id="track-desc"></p>
+
+    <div class="cap-brief" id="cap-brief">
+      <div class="cb-main">
+        <div class="eyebrow" id="cb-month"></div>
+        <h3 id="cb-cap"></h3>
+        <p class="cb-line" id="cb-line"></p>
+        <p class="cb-note" id="cb-note"></p>
+        <div class="cb-arc" id="cb-arc"></div>
+      </div>
+      <div class="cb-side">
+        <div class="cb-lbl">The Voices This Month</div>
+        <ul class="cb-voices" id="cb-voices"></ul>
+        <div class="cb-lbl">Skills In Motion</div>
+        <div class="cb-skills" id="cb-skills"></div>
+      </div>
+    </div>
+
+    <div class="week-tabs" id="week-tabs" role="tablist" aria-label="Select week"></div>
+
+    <div id="week-panels"></div>
+
+    <div class="exp-journey">
+      <div class="ej-head">
+        <h3>Same Capability, Two Experiences</h3>
+        <span class="ej-cap" id="ej-cap"></span>
+      </div>
+      <p class="ej-intro">The month's capability runs through both paths. What changes is the experience: early career learns, builds and gets mentored; experienced and expert professionals lead, review and contribute. Each path ends in a result, not another format.</p>
+      <div class="ej-cols">
+        <div class="ej-col early">
+          <h4>The Early-Career Path</h4>
+          <div class="ej-sub">Curated In → Learn &amp; Build → Train &amp; Deploy</div>
+          <div class="ej-steps">
+            <div class="ej-step"><div class="ej-marker">1</div><div class="ej-line"></div><div class="ej-body"><h5>Curated In</h5><p id="ej-early-0"></p></div></div>
+            <div class="ej-step"><div class="ej-marker">2</div><div class="ej-line"></div><div class="ej-body"><h5>Learn From Practitioners</h5><p id="ej-early-1"></p></div></div>
+            <div class="ej-step"><div class="ej-marker">3</div><div class="ej-line"></div><div class="ej-body"><h5>Build &amp; Prove</h5><p id="ej-early-2"></p></div></div>
+            <div class="ej-step"><div class="ej-marker">4</div><div class="ej-body"><h5>Train &amp; Deploy<span class="ej-result">Result</span></h5><p id="ej-early-3"></p></div></div>
+          </div>
+        </div>
+        <div class="ej-col exp">
+          <h4>The Experienced &amp; Expert Path</h4>
+          <div class="ej-sub">Curated In → Access &amp; Contribute → Offer To Join</div>
+          <div class="ej-steps">
+            <div class="ej-step"><div class="ej-marker">1</div><div class="ej-line"></div><div class="ej-body"><h5>Curated In</h5><p id="ej-exp-0"></p></div></div>
+            <div class="ej-step"><div class="ej-marker">2</div><div class="ej-line"></div><div class="ej-body"><h5>Direct Access</h5><p id="ej-exp-1"></p></div></div>
+            <div class="ej-step"><div class="ej-marker">3</div><div class="ej-line"></div><div class="ej-body"><h5>Contribute</h5><p id="ej-exp-2"></p></div></div>
+            <div class="ej-step"><div class="ej-marker">4</div><div class="ej-body"><h5>Recognized, Then Invited<span class="ej-result">Result</span></h5><p id="ej-exp-3"></p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="lib-head">
+      <div>
+        <div class="eyebrow">The Format Library</div>
+        <h3>How Each One Actually Runs</h3>
+      </div>
+      <p>Open any engagement above and use See How This Format Runs to land here. This is what a member would actually see, not a description of it.</p>
+    </div>
+
+    <div class="lib-grid" id="lib-grid">
+      <div class="mock mock-article" id="fmt-pub">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-pub)"></span><span>Publication / Article</span></div>
+        <div class="mock-curate">Drafted with the practitioners who lived it, not a generic content desk, built to survive a reader who already knows the subject better than most writers would.</div>
+      </div>
+
+      <div class="mock mock-video" id="fmt-video">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-video)"></span><span>Leadership Access (Video)</span></div>
+        <div class="mock-curate">Recorded straight from Optum's own leads, unscripted, never a corporate reel.</div>
+      </div>
+
+      <div class="mock mock-course" id="fmt-course">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-course)"></span><span>Expert Session / Technical Deep Dive</span></div>
+        <div class="mock-curate">Built and kept current by the practitioners who run these systems day to day.</div>
+      </div>
+
+      <div class="mock mock-traindeploy" id="fmt-project">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-traindeploy)"></span><span>Group Project</span></div>
+        <div class="mock-curate">Designed and graded by the delivery team itself, visible and auditable, not a generic LMS course. It ends in a result, not a certificate: Train &amp; Deploy.</div>
+      </div>
+
+      <div class="mock mock-hackathon" id="fmt-hackathon">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--ink)"></span><span>Hackathon / Flagship</span></div>
+        <div class="mock-curate">Judged by domain leads, not HR, problems pulled from real, anonymized production work.</div>
+      </div>
+
+      <div class="mock mock-leaderboard" id="fmt-game">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-game)"></span><span>Weekly Challenge (Gamified)</span></div>
+        <div class="mock-curate">Sourced from real production issues, cleared and anonymized before they're posted, now run as a city-vs-city leaderboard, not just individual scores.</div>
+      </div>
+
+      <div class="mock mock-speedmentor" id="fmt-speedmentor">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-mentor)"></span><span>Speed Mentoring</span></div>
+        <div class="mock-curate">A researched format: five-minute round-robin pairings inside one capability, closed with a match card so a strong pairing can continue past the session.</div>
+      </div>
+
+      <div class="mock mock-virtual" id="fmt-virtual">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-virtual)"></span><span>Practitioner &amp; Architecture Conversation (Virtual)</span></div>
+        <div class="mock-curate">Topic set by what members actually asked for the month before, never a fixed syllabus.</div>
+      </div>
+
+      <div class="mock mock-inperson" id="fmt-inperson">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-inperson)"></span><span>Meetup &amp; Peer Circle: In Person</span></div>
+        <div class="mock-curate">Kept small enough at a WeiTA Hub for a real conversation, not a career fair.</div>
+      </div>
+
+      <div class="mock mock-pitch" id="fmt-pitch">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-pitch)"></span><span>Innovation Group &amp; Idea Challenge</span></div>
+        <div class="mock-curate">Every submission gets a real read on a fixed cadence, the point is that a good idea reaches leadership even when the person behind it has no way to get there on their own.</div>
+      </div>
+
+      <div class="mock mock-ama" id="fmt-ama">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-ama)"></span><span>Leadership AMA (Async Thread)</span></div>
+        <div class="mock-curate">Unfiltered questions, answered by the actual leader, never routed through comms.</div>
+      </div>
+
+      <div class="mock mock-podcast" id="fmt-podcast">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-podcast)"></span><span>Podcast / Audio Series</span></div>
+        <div class="mock-curate">Long-form, for the ones who'd rather listen on a commute than read a slide.</div>
+      </div>
+
+      <div class="mock mock-spotlight" id="fmt-spotlight">
+        <div class="mock-body"></div>
+        <div class="mock-label"><span class="fdot" style="background:var(--c-spotlight)"></span><span>Recognition &amp; Referral Spotlight</span></div>
+        <div class="mock-curate">Peer-nominated and properly written, not a template LinkedIn shout-out.</div>
+      </div>
+    </div>
+
+    <div class="curation-note">Every format above is written or produced by someone who actually does that work (an engineer, a delivery lead, a domain architect), never a content team working from a brief. That distinction isn't a nicety: research across large professional communities consistently finds only around one in ten members ever create anything and roughly one in twenty respond to a given post, and close to half of newcomers never send a second message once the first interaction reads as generic. Five formats (Publications, the Virtual Roundtable, the In-Person Meetup, the Hackathon and Speed Mentoring) carry a "How This Runs" note of their own; open it for the actual mechanism, not just the mockup.</div>
+
+    <div class="other-note">Four formats in the library come straight from community-engagement research: an async Leadership AMA (Metaview's highest-engagement documented format, run as one thread a month rather than a weekly feed), a repurposed-content Podcast (recorded sessions cut into audio, per RecruitBPM), a peer-nominated Recognition Spotlight (the single most common recognition format across every source researched, from Wikipedia's Barnstars to Wild Apricot's member spotlights), and Speed Mentoring: five-to-ten-minute round-robin pairings, closed with a "match card" so a strong pairing can continue past the session (a 2016 University of Hamburg study found mentoring relationships formed this way outlast ones formed through ordinary networking). Train &amp; Deploy and Offer To Join are deliberately missing from the library. They're results, not formats, and they sit in section 04.</div>
+
+    <div class="review-inbox">
+      <div class="review-inbox-head"><svg><use href="#icon-repeat"/></svg><span>How The Library Actually Gets Replaced, Not Just Written</span></div>
+      <div class="review-row"><div class="review-who">Domain Architect<span class="review-when">Educational Session</span></div><div class="review-what">Rewrote the month's outline after members flagged the last one as too introductory for where the group actually is.</div></div>
+      <div class="review-row"><div class="review-who">Delivery Lead<span class="review-when">Hackathon / Case Challenge</span></div><div class="review-what">Swapped the prompt for a live incident-response scenario, the old one stopped separating strong candidates from the rest.</div></div>
+      <div class="review-row"><div class="review-who">Engineering Manager<span class="review-when">Leadership AMA</span></div><div class="review-what">Replaced one question set with what the team is actually fielding in real one-on-ones that month, not a recycled list.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="content-track">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">04 · The Conversion</div>
+      <h2>What Comes Back, Month Over Month.</h2>
+      <p>The community isn't the deliverable, what it converts into is: a bigger pool, better-fit hires, fewer drop-offs between offer and start, and a stronger employer brand along the way. Here's what a standing calendar like this actually returns, and which engagement converts into which result. Engagement is what WeiTA runs. A result is what the relationship becomes.</p>
+    </div>
+
+    <div class="result-flow">
+      <div class="rf-col rf-channels-col">
+        <div class="rf-col-head">Your Engagement</div>
+        <div class="rf-channels">
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-pub)"></span>Publications</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-video)"></span>Leadership Access &amp; AMA</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-course)"></span>Expert Sessions &amp; Deep Dives</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-virtual)"></span>Practitioner Conversations &amp; Peer Circles</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--ink)"></span>Hackathon &amp; Flagship</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-pitch)"></span>Innovation Group &amp; Idea Challenge</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-traindeploy)"></span>Group Projects</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-mentor)"></span>Speed Mentoring</span>
+          <span class="rf-chip"><span class="fdot" style="background:var(--c-spotlight)"></span>Recognition &amp; Referral</span>
+        </div>
+      </div>
+      <div class="rf-arrow">
+        <div class="rf-arrow-line"></div>
+        <div class="rf-arrow-label">Converts Into</div>
+      </div>
+      <div class="rf-col rf-results-col">
+        <div class="rf-col-head">Your Result</div>
+        <div class="rf-ladder">
+          <span class="rf-res">Introduction</span>
+          <span class="rf-res">Interest</span>
+          <span class="rf-res">Community</span>
+          <span class="rf-res">Referral</span>
+          <span class="rf-res">Shortlist</span>
+          <span class="rf-res">Assessment</span>
+          <span class="rf-res">Opportunity</span>
+          <span class="rf-res key">Offer To Join</span>
+          <span class="rf-res key">Train &amp; Deploy</span>
+        </div>
+        <div class="rf-adds">
+          <div class="rf-col-head">What It Adds Up To</div>
+          <div class="rf-results">
+            <div class="rf-result"><b>A bigger, actively growing pool,</b> month over month, not a one-time list.</div>
+            <div class="rf-result"><b>Better-fit hires,</b> vetted through months of real work and interaction, not guessed at in one interview.</div>
+            <div class="rf-result"><b>Fewer drop-offs between offer and start,</b> because the relationship never goes cold at the notice period.</div>
+            <div class="rf-result"><b>A stronger employer brand,</b> built from the same touchpoints that build the pipeline.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="growth-chart">
+      <div class="growth-bar-row">
+        <div class="growth-bar" style="height:12%"><span class="growth-val">6,200</span></div>
+        <div class="growth-bar" style="height:29%"><span class="growth-val">14,800</span></div>
+        <div class="growth-bar" style="height:48%"><span class="growth-val">24,500</span></div>
+        <div class="growth-bar" style="height:65%"><span class="growth-val">33,000</span></div>
+        <div class="growth-bar" style="height:83%"><span class="growth-val">42,300</span></div>
+        <div class="growth-bar" style="height:100%"><span class="growth-val">51,000</span></div>
+      </div>
+      <div class="growth-labels"><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span></div>
+      <p class="growth-caption">Projected community size, pacing toward a standing community in the tens of thousands.</p>
+    </div>
+
+    <div class="result-stats">
+      <div class="result-stat"><div class="num">3 To 4</div><div class="lbl">Hires Per Month, Once The Community Matures</div></div>
+      <div class="result-stat"><div class="num">Vetted, Not Guessed</div><div class="lbl">Culture Fit Checked Through Months Of Real Interaction, Not One Interview Loop</div></div>
+      <div class="result-stat"><div class="num">Warm To Start Date</div><div class="lbl">Fewer Offer-Stage Drop-Offs, Because The Relationship Doesn't Go Cold At Notice Period</div></div>
+      <div class="result-stat"><div class="num">12</div><div class="lbl">Leadership Touchpoints With The Community, Across Six Months</div></div>
+      <div class="result-stat"><div class="num">24+</div><div class="lbl">Public-Facing Publications, Across Six Months</div></div>
+      <div class="result-stat"><div class="num">Employer Of Choice</div><div class="lbl">Every Touchpoint Above Is Public, Building The Employer Brand And The Pipeline At Once</div></div>
+    </div>
+
+    <div class="lib-head" style="margin-bottom:14px;">
+      <div>
+        <div class="eyebrow">Channel By Channel</div>
+        <h3>From Engagement, To Result</h3>
+      </div>
+      <p>Every format does a specific job, not engagement for its own sake. How it converts, in two words. What it creates, in one.</p>
+    </div>
+    <div class="convert-table-wrap">
+      <table class="convert-table">
+        <thead>
+          <tr><th>Engagement</th><th>What You Get</th><th>How It Converts</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-pub)"></span>Publications &amp; Articles</td><td data-label="What You Get">External visibility for the work itself.</td><td data-label="How It Converts" class="conv">Awareness → Interest</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Introduction</span><span class="res-tag">Interest</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-video)"></span>Leadership Access &amp; AMA</td><td data-label="What You Get">Direct access to what leadership is actually deciding.</td><td data-label="How It Converts" class="conv">Trust → Interest</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Introduction</span><span class="res-tag">Opportunity</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-course)"></span>Expert Sessions &amp; Technical Deep Dives</td><td data-label="What You Get">Real depth in the capability, from the people who run the systems.</td><td data-label="How It Converts" class="conv">Expertise → Trust</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Community</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-virtual)"></span>Practitioner &amp; Architecture Conversations, Peer Circles</td><td data-label="What You Get">Honest peer discussion of how the work is really done.</td><td data-label="How It Converts" class="conv">Peer Trust → Referral</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Referral</span><span class="res-tag">Shortlist</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-game)"></span>Weekly Challenges</td><td data-label="What You Get">An early read on skill, in public, at low stakes.</td><td data-label="How It Converts" class="conv">Participation → Proof</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Assessment</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--ink)"></span>Hackathon &amp; The Monthly Flagship</td><td data-label="What You Get">Proof of skill under real, applied conditions.</td><td data-label="How It Converts" class="conv">Proof → Visibility</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Shortlist</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-pitch)"></span>Innovation Group &amp; Idea Challenge</td><td data-label="What You Get">A direct line from an idea to leadership.</td><td data-label="How It Converts" class="conv">Visibility → Opportunity</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Opportunity</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-traindeploy)"></span>Group Projects</td><td data-label="What You Get">Early-career work on real, applied problems, reviewed by the team that would staff it.</td><td data-label="How It Converts" class="conv">Participation → Assessment</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Assessment</span><span class="res-tag key">Train &amp; Deploy</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-mentor)"></span>Speed Mentoring</td><td data-label="What You Get">A real working relationship with someone senior.</td><td data-label="How It Converts" class="conv">Connection → Community</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Community</span><span class="res-tag">Referral</span></div></td></tr>
+          <tr><td data-label="Engagement"><span class="fdot" style="background:var(--c-spotlight)"></span>Recognition, Referral &amp; Phase 3 Tier</td><td data-label="What You Get">Public, named advocacy inside and outside the community.</td><td data-label="How It Converts" class="conv">Recognition → Advocacy</td><td data-label="Result"><div class="res-tags"><span class="res-tag">Referral</span><span class="res-tag key">Offer To Join</span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="result-defs">
+      <div class="result-def">
+        <div class="rd-lbl">A Result, Not A Format</div>
+        <h4>Offer To Join</h4>
+        <p>Where the Experienced &amp; Expert path lands. A candidate who's stayed visible in the same cadence since before the offer, never a stranger during the notice period. Fewer renegotiations and no-shows between offer and start, because the relationship never went cold.</p>
+      </div>
+      <div class="result-def td">
+        <div class="rd-lbl">A Result, Not A Format</div>
+        <h4>Train &amp; Deploy</h4>
+        <p>Where the Early-Career path lands. Professionals proven through Group Projects in their capability, reviewed by the team that would actually staff them. Deploy-ready, not certificate-ready.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="close">
+  <div class="wrap">
+    <div class="wordmark">Wei<span class="ta">TA</span></div>
+    <h2 class="close-h">A Relationship That's Already Running When The Role Opens.</h2>
+    <p class="close-around">Built around capabilities, expertise, leadership, learning, innovation, projects, community and opportunity, not around the next requisition.</p>
+    <div class="close-arc">
+      <div class="arc-step attract">
+        <h3>Attract</h3>
+        <p>Capability-first content, led by the people who do the work. Professionals arrive because the conversation is worth their time.</p>
+      </div>
+      <div class="arc-step engage">
+        <h3>Engage</h3>
+        <p>Leadership, learning, innovation and projects, one capability at a time. Trust builds long before anyone asks for a CV.</p>
+      </div>
+      <div class="arc-step hire">
+        <h3>Hire</h3>
+        <p>Introductions, shortlists and offers drawn from people you already know. For early career, Train &amp; Deploy.</p>
+      </div>
+    </div>
+    <p class="close-line">Most professional communities lose the majority of a new member in the first message, the ones that don't are the ones where showing up costs almost nothing, and means something specific when a member does. That's the design bet running underneath every section above, not a headline number.</p>
+    <div class="cover-tagline">Talent Decisions Driven By Conversation.</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  var FMT_COLOR = {
+    pub:"var(--c-pub)", video:"var(--c-video)", course:"var(--c-course)", project:"var(--c-traindeploy)",
+    hackathon:"var(--ink)", game:"var(--c-game)", speedmentor:"var(--c-mentor)", virtual:"var(--c-virtual)",
+    inperson:"var(--c-inperson)", pitch:"var(--c-pitch)", ama:"var(--c-ama)", podcast:"var(--c-podcast)", spotlight:"var(--c-spotlight)"
+  };
+
+  var AUDIENCE = { early:"Early Career", exp:"Experienced & Expert", both:"Early Career + Experienced & Expert" };
+
+  // One engagement: format, engagement type, capability-specific title, audience, voice, content, how it converts, result
+  function S(fmt, type, title, track, voice, content, converts, result, flagship){
+    return { fmt:fmt, type:type, title:title, track:track, voice:voice, content:content, converts:converts, result:result, flagship:!!flagship };
+  }
+
+  var WEEK_LABELS = {
+    oct: ["Oct 1–7","Oct 8–14","Oct 15–21","Oct 22–28"],
+    nov: ["Nov 1–7","Nov 8–14","Nov 15–21","Nov 22–28"],
+    dec: ["Dec 1–7","Dec 8–14","Dec 15–21","Dec 22–28"],
+    jan: ["Jan 1–7","Jan 8–14","Jan 15–21","Jan 22–28"],
+    feb: ["Feb 1–7","Feb 8–14","Feb 15–21","Feb 22–28"],
+    mar: ["Mar 1–7","Mar 8–14","Mar 15–21","Mar 22–28"]
+  };
+
+  var MONTHS = {
+    oct: {
+      name:"October", cap:"Cloud & Infrastructure Engineering", cluster:"cloud",
+      line:"The platform everything else runs on. Launch month opens the whole community, anchored in the engineers who keep claims moving.",
+      note:"<b>Launch: All Clusters.</b> Every cluster enters through one cross-track Build Day, so the community opens at once rather than cluster by cluster.",
+      voices:["Priya Raman, VP Engineering","Principal Cloud Architect","Platform Reliability Lead","EDI Integration Lead"],
+      skills:["EDI & Integration Pipelines","HIPAA-Compliant Cloud","Platform Reliability","Infrastructure As Code","Cost & Capacity"],
+      weeks:{
+        1:{ theme:"Leadership", intent:"Why the platform is being built, and by whom.", slots:[
+          S("video","Leadership Access","Why We're Building This, Not Just Announcing It","exp","Priya Raman, VP Engineering","Why the community exists, what the platform team builds next, and what it needs from the people who join.","Trust → Interest","Introduction"),
+          S("pub","Publication","Inside The EDI Network Migration: What Actually Broke","both","EDI Integration Lead","The part of a live claims migration that didn't go to plan, told by the person who was on call.","Awareness → Expertise","Interest"),
+          S("game","Weekly Challenge","Optimize This Claims Query: 3 Days Left","early","Set by the Platform Reliability Lead","A slow query on synthetic claims tables. Make it fast, then explain why it was slow.","Participation → Proof","Assessment")
+        ]},
+        2:{ theme:"Capability", intent:"How claims actually move through the platform.", slots:[
+          S("course","Expert Session","Claims Processing At Scale: EDI Pipelines, From First Principles","both","Principal Cloud Architect","How 837 and 835 files really travel, where they fail, and what monitoring catches first.","Expertise → Trust","Community"),
+          S("virtual","Technical Deep Dive","Scaling Data Teams Around Claims & Clinical Data","exp","Principal Cloud Architect, co-hosted by a member","Where ownership between platform, data and product teams breaks once volume triples.","Peer Trust → Interest","Shortlist"),
+          S("project","Group Project","Cloud & Infra Sprint: Provisioning A HIPAA-Compliant Environment","early","Reviewed by the platform delivery team","Stand up a compliant environment in code, audit trail included. Graded go or no-go.","Participation → Assessment","Train & Deploy")
+        ]},
+        3:{ theme:"Innovation", intent:"One event, eight tracks, every cluster in the room.", slots:[
+          S("hackathon","Flagship Build Day","The WeiTA Build Day (18–19 Oct)","both","Judged by the domain lead for each track","One weekend, eight tracks. The Cloud track: make a brittle EDI retry path heal itself.","Proof → Visibility","Shortlist",true),
+          S("pitch","Innovation Group","Infrastructure Ideas Worth Funding: Window Opens","both","First read by Priya Raman's platform team","Open to every cluster. Ideas that touch the platform get read by the people who run it.","Visibility → Opportunity","Opportunity"),
+          S("spotlight","Recognition","Member Spotlight: Sana M., Full-Stack & Software Engineering","both","Peer-nominated","Named for the fix she shipped in the first Build Day, written up properly.","Recognition → Advocacy","Referral")
+        ]},
+        4:{ theme:"Community & Career", intent:"What a career on this platform actually looks like.", slots:[
+          S("inperson","In-Person Meetup","Regional Roundtable: Bengaluru","both","Bengaluru Hub lead, with the Platform Reliability Lead","On-call stories, capacity planning, and what good looks like in a regulated cloud.","Community → Referral","Referral"),
+          S("ama","Leadership AMA","Ask A Platform Leader","both","Priya Raman, VP Engineering","Where forward-deployed engineering roles are opening, and what the platform team hires for.","Trust → Interest","Opportunity"),
+          S("podcast","Podcast","Ep. 12: What An EDI Migration Retro Actually Sounds Like","both","Priya Raman, with the EDI Integration Lead","The migration retro, cut to sixteen honest minutes.","Awareness → Trust","Interest")
+        ]}
+      }
+    },
+    nov: {
+      name:"November", cap:"AI/ML & Data Science", cluster:"aiml",
+      line:"Moving AI from pilot to production, in a business where a wrong prediction touches a real claim or a real patient.",
+      note:"",
+      voices:["Meera Iyer, Head of Applied AI","ML Platform Lead","Principal Data Scientist, Claims","Clinical AI Architect"],
+      skills:["Model Evaluation","MLOps & Monitoring","GenAI On Regulated Data","Feature Pipelines","Responsible AI"],
+      weeks:{
+        1:{ theme:"Leadership", intent:"Where AI is actually creating value, and where it isn't yet.", slots:[
+          S("video","AI Leadership Access","Building The Applied AI Bench For Claims & Care","exp","Meera Iyer, Head of Applied AI","Where AI pays off in claims and care today, what stays a pilot, and the skills the team can't hire fast enough.","Trust → Interest","Introduction"),
+          S("pub","Publication","What Our Claims Risk-Scoring Model Actually Gets Wrong","both","Principal Data Scientist, Claims","One edge case the model missed in production, how it was caught, and what the team changed.","Awareness → Expertise","Interest"),
+          S("game","Weekly Challenge","Debug This Model: 3 Days Left","early","Set by an ML Engineer, Claims Analytics","A drifting classifier on synthetic claims data. Find out why precision fell.","Participation → Proof","Assessment")
+        ]},
+        2:{ theme:"Capability", intent:"Production AI, not demos.", slots:[
+          S("course","Expert Session","Building Production-Ready AI Systems","both","ML Platform Lead","Evaluation, monitoring and rollback for models running at claims volume. What a real release checklist holds.","Expertise → Trust","Community"),
+          S("virtual","Architecture Conversation","Where MLOps Actually Breaks In Production","exp","Clinical AI Architect, with two members","Feature stores, retraining triggers, and the handoff between data science and the platform team.","Peer Trust → Interest","Shortlist"),
+          S("project","Group Project","AI/ML Sprint: A Real Feature Pipeline","early","Reviewed by the Applied AI delivery team","Build, test and document one feature pipeline end to end. Graded go or no-go.","Participation → Assessment","Train & Deploy")
+        ]},
+        3:{ theme:"Innovation", intent:"AI use cases worth building.", slots:[
+          S("hackathon","Flagship Hackathon","Build With GenAI: The WeiTA AI/ML Build Day (14–15 Nov)","both","Judged by the Applied AI team","Real, de-identified data. Build a GenAI assistant for claims reviewers that cites its sources.","Proof → Visibility","Shortlist",true),
+          S("pitch","Innovation Group","AI Use Cases Worth Building: Anomaly Detection For Claims Review","exp","Rohit S., reviewed by Meera Iyer","Flag irregular claims before manual review, not after. Peer-reviewed, then read by leadership.","Visibility → Opportunity","Opportunity"),
+          S("pitch","Idea Challenge","Where Would You Put A Model Next?","early","Set by the Principal Data Scientist, Claims","One page, one workflow: why a model helps, and how you'd know it had failed.","Participation → Visibility","Assessment")
+        ]},
+        4:{ theme:"Community & Career", intent:"AI careers, from the people doing the work.", slots:[
+          S("ama","Leadership AMA","Ask An AI Engineering Leader","both","Meera Iyer, Head of Applied AI","Applied research or production ML, what the bar is, and where the new seats are.","Trust → Interest","Opportunity"),
+          S("speedmentor","Speed Mentoring","AI Career & Capability Mentoring","early","Senior ML engineers and data scientists","Six five-minute rounds. Which skills to build first, and which to ignore for now.","Connection → Community","Community"),
+          S("inperson","Peer Circle","Hyderabad: AI On Regulated Data","exp","Hyderabad Hub lead, with the Principal Data Scientist","Twenty-five practitioners. What GenAI can and can't touch when the data is PHI.","Community → Referral","Referral")
+        ]}
+      }
+    },
+    dec: {
+      name:"December", cap:"Full-Stack & Software Engineering", cluster:"fullstack",
+      line:"Shipping member-facing software that survives regulation, legacy code and five years of change.",
+      note:"",
+      voices:["Karan Bhatt, Director of Engineering","Staff Engineer, Member Portal","API Platform Lead","Engineering Manager, Provider Systems"],
+      skills:["FHIR APIs","Legacy Modernisation","Systems Design","Design Systems","Testing In Regulated Delivery"],
+      weeks:{
+        1:{ theme:"Leadership", intent:"How engineering decisions get made here.", slots:[
+          S("video","Engineering Leadership Access","How We Actually Pick A Tech Stack For A HIPAA-Regulated Platform","exp","Karan Bhatt, Director of Engineering","The trade-offs behind the stack, what got rejected, and where engineering is headed in 2027.","Trust → Interest","Introduction"),
+          S("pub","Publication","Why We Rewrote Our Member Refill Workflow Twice","both","Staff Engineer, Member Portal","Two rewrites, two wrong reasons, and what made the third one stick.","Awareness → Expertise","Interest"),
+          S("game","Weekly Challenge","Refactor This Legacy Claims Endpoint: 3 Days Left","early","Set by the Engineering Manager, Provider Systems","A 900-line handler. Make it testable without changing what it does.","Participation → Proof","Assessment")
+        ]},
+        2:{ theme:"Capability", intent:"APIs and systems built to last.", slots:[
+          S("course","Expert Session","Designing FHIR-Compliant APIs That Survive Five Years","both","API Platform Lead","Versioning, resource modelling, and the mistakes that only show up in year three.","Expertise → Trust","Community"),
+          S("virtual","Architecture Conversation","Monoliths, Microservices And What We'd Do Differently","exp","Karan Bhatt, with two staff engineers","Where splitting services helped, and where it only moved the complexity somewhere else.","Peer Trust → Interest","Shortlist"),
+          S("project","Group Project","Full-Stack Sprint: One Member-Portal Feature, End To End","early","Reviewed by the Member Portal team","Front end, API, tests and release notes for one real feature.","Participation → Assessment","Train & Deploy")
+        ]},
+        3:{ theme:"Innovation", intent:"Ship it, show it.", slots:[
+          S("hackathon","Flagship Build Day","The WeiTA Full-Stack Build Day (12–13 Dec)","both","Judged by the engineering team","Ship one real feature front to back on a sandboxed member portal.","Proof → Visibility","Shortlist",true),
+          S("pitch","Innovation Group","One Component Library Across The Member, Provider & Ops Portals","exp","Neha T., reviewed by Karan Bhatt","Three teams solving the same UI problem separately. One proposal to stop it.","Visibility → Opportunity","Opportunity"),
+          S("pitch","Project Showcase","Show What You Shipped: Early-Career Demos","early","Judged by the Staff Engineer, Member Portal","Five-minute demos of Group Project work, with the code open for review.","Visibility → Assessment","Assessment")
+        ]},
+        4:{ theme:"Community & Career", intent:"Specialise, or stay full-stack?", slots:[
+          S("ama","Leadership AMA","Ask An Engineering Director","both","Karan Bhatt, Director of Engineering","What the refill rebuild needs, and how the platform team actually interviews.","Trust → Interest","Opportunity"),
+          S("speedmentor","Speed Mentoring","Engineering Career Mentoring","early","Staff and senior engineers","Specialise or stay full-stack: six short answers from six different paths.","Connection → Community","Community"),
+          S("inperson","In-Person Meetup","Regional Roundtable: Pune","both","Pune Hub lead, with the Staff Engineer, Member Portal","Legacy code, honest estimates, and the review culture worth keeping.","Community → Referral","Referral")
+        ]}
+      }
+    },
+    jan: {
+      name:"January", cap:"Security & Risk (InfoSec)", cluster:"security",
+      line:"Protecting PHI when the attack surface now spans cloud, APIs, vendors and AI.",
+      note:"",
+      voices:["Arjun T., Head of Security & Risk","AppSec Lead","Cloud Security Architect","Incident Response Manager"],
+      skills:["Threat Modelling","Cloud Security Posture","API Security","Identity & Access","Incident Response"],
+      weeks:{
+        1:{ theme:"Leadership", intent:"What security leadership is actually worried about.", slots:[
+          S("video","Security Leadership Access","What We're Actually Worried About In Protecting PHI Through 2027","exp","Arjun T., Head of Security & Risk","The threats that changed this year, where AI helps defenders, and where it helps attackers.","Trust → Interest","Introduction"),
+          S("pub","Publication","Inside A Real Incident: What The Postmortem Doesn't Say About A PHI Near-Miss","both","Incident Response Manager","What got fixed after a near-miss, and what quietly got deprioritised.","Awareness → Expertise","Interest"),
+          S("game","Weekly Challenge","Find The Vulnerability In This Claims API: 3 Days Left","early","Set by the AppSec Lead","An authorisation flaw hidden in a mock claims API. Find it, then write it up.","Participation → Proof","Assessment")
+        ]},
+        2:{ theme:"Capability", intent:"Thinking like an attacker, building like a defender.", slots:[
+          S("course","Expert Session","Threat Modeling For Healthcare Platforms, From First Principles","both","Cloud Security Architect","Walk one claims flow, mark the trust boundaries, rank what actually matters.","Expertise → Trust","Community"),
+          S("virtual","Architecture Conversation","What A Good Access Model Actually Requires","exp","Arjun T., with identity and access practitioners","Least privilege at scale, joiner-mover-leaver, and access reviews people actually finish.","Peer Trust → Interest","Shortlist"),
+          S("project","Group Project","Security Sprint: Live Threat Triage On A Healthcare Platform","early","Reviewed by the security operations team","Triage a week of sanitised alerts. Defend every call you make.","Participation → Assessment","Train & Deploy")
+        ]},
+        3:{ theme:"Innovation", intent:"Break it before someone else does.", slots:[
+          S("hackathon","Flagship Hackathon","The WeiTA Security Build Day: Capture The Flag (16–17 Jan)","both","Judged by the security team","Production-grade capture the flag across AppSec, cloud and PHI handling.","Proof → Visibility","Shortlist",true),
+          S("pitch","Innovation Group","A Faster Access-Review Workflow For New Joiners","both","Fatima R., reviewed by Arjun T.","New-joiner access provisioning, from five days to one.","Visibility → Opportunity","Opportunity"),
+          S("pitch","Idea Challenge","Write The Abuse Case Nobody Tested","early","Set by the AppSec Lead","Pick one internal workflow. Describe how it gets misused, and how you'd catch it.","Participation → Visibility","Assessment")
+        ]},
+        4:{ theme:"Community & Career", intent:"Which door into security, and why.", slots:[
+          S("ama","Leadership AMA","Ask A Security Leader","both","Arjun T., Head of Security & Risk","Hiring for the cloud security posture team, and how engineers move into security.","Trust → Interest","Opportunity"),
+          S("speedmentor","Speed Mentoring","Security Career Mentoring","early","Senior security practitioners","SOC, AppSec, GRC or cloud: which door first, and why.","Connection → Community","Community"),
+          S("inperson","Peer Circle","Gurgaon: Closed-Door Security Practitioners","exp","Incident Response Manager","What went wrong this quarter, names removed, lessons kept.","Community → Referral","Referral")
+        ]}
+      }
+    },
+    feb: {
+      name:"February", cap:"Product & UX/CX", cluster:"product",
+      line:"Deciding what not to build, and designing for members who are anxious, busy and often unwell.",
+      note:"",
+      voices:["Nandini R., Head of Product & UX/CX","Principal UX Researcher","Group Product Manager, Member Experience","Content Design Lead"],
+      skills:["Unbiased Research","Accessibility","Product Judgement","Service Design","Plain-Language Content"],
+      weeks:{
+        1:{ theme:"Leadership", intent:"What gets cut, and the evidence behind it.", slots:[
+          S("video","Product Leadership Access","How We Actually Decide What Not To Build","exp","Nandini R., Head of Product & UX/CX","Last year's roadmap cuts, and the evidence that forced each one.","Trust → Interest","Introduction"),
+          S("pub","Publication","We Shipped The Wrong Fix Three Times Before This One","both","Group Product Manager, Member Experience","Three fixes, three assumptions about the member, and what was actually true.","Awareness → Expertise","Interest"),
+          S("game","Weekly Challenge","Redesign This Flow In 20 Minutes: Peer Voted","early","Set by the Content Design Lead","A confusing claims-denial screen. Make it clear to a worried member.","Participation → Proof","Assessment")
+        ]},
+        2:{ theme:"Capability", intent:"Research that doesn't lead the witness.", slots:[
+          S("course","Expert Session","Writing Research Questions That Don't Lead The Witness","both","Principal UX Researcher","Real interview scripts, marked up: what to cut, and what to ask instead.","Expertise → Trust","Community"),
+          S("virtual","Practitioner Conversation","When Support Data Should Change The Roadmap","exp","Group Product Manager, with support leads","Call-driver data against product intuition, and who wins the argument.","Peer Trust → Interest","Shortlist"),
+          S("project","Group Project","Product Sprint: A Real Usability Test","early","Reviewed by the research team","Plan, run and synthesise five sessions on a live member flow.","Participation → Assessment","Train & Deploy")
+        ]},
+        3:{ theme:"Innovation", intent:"One flow, redesigned and tested.", slots:[
+          S("hackathon","Flagship Build Day","The WeiTA Product & UX Build Day (13–14 Feb)","both","Judged by the product team","Redesign one real member flow in a weekend, tested with real users on Sunday.","Proof → Visibility","Shortlist",true),
+          S("pitch","Innovation Group","A Plain-Language Rewrite Of The Claims Status Page","both","Aisha K., reviewed by Nandini R.","One page rewritten in plain language. Fewer calls from confused members.","Visibility → Opportunity","Opportunity"),
+          S("spotlight","Recognition","Member Spotlight: Divya V., Product & UX/CX","both","Peer-nominated","Pitched an idea in October. Leading the team that shipped it by February.","Recognition → Advocacy","Referral")
+        ]},
+        4:{ theme:"Community & Career", intent:"Research, design or product management?", slots:[
+          S("ama","Leadership AMA","Ask A Product Leader","both","Nandini R., Head of Product & UX/CX","The new CX research function, what a strong portfolio shows, and remote-friendly roles.","Trust → Interest","Opportunity"),
+          S("speedmentor","Speed Mentoring","Product & Design Career Mentoring","early","Senior researchers, designers and PMs","Research, design or product: six senior people, six honest answers.","Connection → Community","Community"),
+          S("inperson","In-Person Meetup","Regional Roundtable: Chennai","both","Chennai Hub lead, with the Content Design Lead","Accessibility in real healthcare journeys, and what it costs to get it wrong.","Community → Referral","Referral")
+        ]}
+      }
+    },
+    mar: {
+      name:"March", cap:"Corporate & Business Operations", cluster:"corpops",
+      line:"Running a healthcare business at scale: handoffs, provider networks, the P&L, and the decisions in between.",
+      note:"Clinical &amp; Healthcare Professionals and Customer &amp; Support Services <b>lead their own months from April.</b>",
+      voices:["Sanjay M., Head of Business Operations","Provider Network Operations Lead","Finance Business Partner","Process Excellence Manager"],
+      skills:["Process Design","Provider Network Operations","Financial Acumen","Operating Cadence","Automation Readiness"],
+      weeks:{
+        1:{ theme:"Leadership", intent:"What operations owns, and what it only influences.", slots:[
+          S("video","Operations Leadership Access","Where Operations Sits In A Healthcare Company This Size","exp","Sanjay M., Head of Business Operations","What operations owns, what it influences, and where automation is changing the work.","Trust → Interest","Introduction"),
+          S("pub","Publication","What Actually Slows Down A Cross-Team Handoff","both","Process Excellence Manager","The tool wasn't the problem. Nobody owned the decision.","Awareness → Expertise","Interest"),
+          S("game","Weekly Challenge","Spot The Process Gap: Case-Based Challenge","early","Set by the Provider Network Operations Lead","A provider onboarding case spread across four trackers. Find where it breaks.","Participation → Proof","Assessment")
+        ]},
+        2:{ theme:"Capability", intent:"The numbers and rhythms behind good operations.", slots:[
+          S("course","Expert Session","Reading A P&L Without An MBA","both","Finance Business Partner","The five lines operations actually moves, with real, anonymised numbers.","Expertise → Trust","Community"),
+          S("virtual","Practitioner Conversation","What Good Operating Cadence Actually Looks Like","exp","Sanjay M., with operations leads","Weekly reviews that change decisions, and the ones that only report.","Peer Trust → Interest","Shortlist"),
+          S("project","Group Project","Operations Sprint: Running A Real Process Audit","early","Reviewed by Process Excellence","Map one live process, measure it, and propose one change.","Participation → Assessment","Train & Deploy")
+        ]},
+        3:{ theme:"Innovation", intent:"A real operating problem, one weekend.", slots:[
+          S("hackathon","Flagship Case Challenge","The WeiTA Operations Case Challenge (20–21 Mar)","both","Judged by operations leadership","A real operating problem, anonymised, solved and defended in one weekend.","Proof → Visibility","Shortlist",true),
+          S("pitch","Innovation Group","A Single Source Of Truth For Provider Network Onboarding","both","Ritu P., reviewed by Sanjay M.","Four separate provider-onboarding trackers, replaced by one.","Visibility → Opportunity","Opportunity"),
+          S("spotlight","Recognition","Member Spotlight: Ritu P., Nominated By Sanjay M.","both","Written by Sanjay M.","The kind of fix that never gets noticed unless someone's actually looking.","Recognition → Advocacy","Referral")
+        ]},
+        4:{ theme:"Community & Career", intent:"From analyst to operations leader.", slots:[
+          S("ama","Leadership AMA","Ask An Operations Leader","both","Sanjay M., Head of Business Operations","The new provider-network operations lead role, and how analysts move into ops leadership.","Trust → Interest","Opportunity"),
+          S("speedmentor","Speed Mentoring","Operations Career Mentoring","early","Senior operations and finance leads","Analyst, ops, finance or strategy: which path builds judgement fastest.","Connection → Community","Community"),
+          S("inperson","In-Person Meetup","Regional Roundtable: Bengaluru (Ops & Support)","both","Bengaluru Hub lead, with the Provider Network Operations Lead","Ops and support leads, one room: where member complaints actually start.","Community → Referral","Referral")
+        ]}
+      }
+    }
+  };
+
+  // The same capability, two different experiences
+  var JOURNEY = {
+    oct: {
+      early:["Proof of work: a claims-adjudication or EDI systems walkthrough, not a resume.","EDI pipelines from first principles, taught by the Principal Cloud Architect.","Speed up a slow claims query, then take the Cloud track at the launch Build Day.","A HIPAA-compliant environment, provisioned and reviewed by the platform team."],
+      exp:["Verified against real platform ownership: migrations led, incidents owned.","The VP Engineering on why the platform exists, plus the data-teams deep dive.","Co-host the Bengaluru roundtable. Put infrastructure ideas in front of the platform team.","Founding members of the Cloud advocacy tier, first in line when platform roles open."]
+    },
+    nov: {
+      early:["Proof of work: a short applied case on a real, de-identified dataset.","Production AI sessions with the ML Platform Lead: how models get evaluated, not just trained.","Debug a drifting model, pitch a use case, then Build With GenAI.","A feature pipeline, reviewed by the Applied AI delivery team."],
+      exp:["Verified against real model ownership: what shipped, what was monitored, what was rolled back.","AI Leadership Access and the MLOps architecture conversation, with the people making the calls.","Review AI use cases in the Innovation Group. Mentor early-career engineers on what to learn first.","Named in the AI/ML advocacy tier. The strongest conversations become an Offer To Join."]
+    },
+    dec: {
+      early:["Proof of work: a short review of real, anonymised code.","FHIR API design with the API Platform Lead: versioning, modelling, testing.","Refactor a legacy endpoint, demo your project, ship at the Build Day.","One member-portal feature, end to end, reviewed by the team that owns it."],
+      exp:["Verified against systems actually designed and shipped, not stacks listed.","The Director of Engineering on stack decisions, and the monolith-to-microservices conversation.","Propose shared components in the Innovation Group. Mentor on specialising versus staying broad.","Named in the engineering advocacy tier. Refill-rebuild seats are offered here first."]
+    },
+    jan: {
+      early:["Proof of work: a short vulnerability write-up on a sandboxed app.","Threat modelling a real claims flow with the Cloud Security Architect.","Find the flaw in a mock claims API, write an abuse case, then capture the flag.","A week of sanitised alerts, triaged and defended in front of the security team."],
+      exp:["Verified against incidents handled and controls owned, not certifications held.","The Head of Security & Risk on 2027 threats, and the access-model conversation.","Join the closed-door Gurgaon peer circle. Review access-workflow ideas with leadership.","Named in the security advocacy tier. Cloud security posture seats open here first."]
+    },
+    feb: {
+      early:["Proof of work: a portfolio review of one real project, start to finish.","Unbiased research questions with the Principal UX Researcher.","Redesign a denial screen in twenty minutes, then a full flow at the Build Day.","Five usability sessions, planned, run and synthesised with the research team."],
+      exp:["Verified against decisions owned: what was cut, what shipped, what changed.","The Head of Product on what not to build, and the support-data conversation.","Review plain-language and CX ideas. Mentor on research, design or product.","Named in the product advocacy tier. CX research seats open here first."]
+    },
+    mar: {
+      early:["Proof of work: a short operating case, reasoned out loud.","The P&L lines operations actually moves, with the Finance Business Partner.","Find the gap in a provider onboarding case, then the weekend Case Challenge.","A live process mapped, measured and improved, reviewed by Process Excellence."],
+      exp:["Verified against operations actually run: teams, budgets, processes changed.","The Head of Business Operations on where ops sits, and the operating-cadence conversation.","Review provider-network ideas. Mentor analysts moving into operations.","Named in the operations advocacy tier. The new provider-network lead role starts here."]
+    }
+  };
+
+  // Same formats, different capability. What each format becomes, cluster by cluster.
+  var CLUSTER_CONTENT = {
+    aiml: { label:"AI/ML & Data Science", month:"Leads November", monthKey:"nov",
+      voices:"Head of Applied AI, ML Platform Lead, Principal Data Scientist, Clinical AI Architect.",
+      rows:["AI Leadership Access: where AI creates value in claims and care, and what stays a pilot.","Building Production-Ready AI Systems.","Ask An AI Engineering Leader.","AI Use Cases Worth Building.","Build With GenAI: the AI/ML Build Day, judged by the Applied AI team.","AI Career &amp; Capability Mentoring."] },
+    cloud: { label:"Cloud & Infrastructure Engineering", month:"Anchors October", monthKey:"oct",
+      voices:"VP Engineering, Principal Cloud Architect, Platform Reliability Lead, EDI Integration Lead.",
+      rows:["Why We're Building This: the platform roadmap, from the VP Engineering.","Claims Processing At Scale: EDI Pipelines, From First Principles.","Ask A Platform Leader.","Infrastructure Ideas Worth Funding.","The Cloud track of the launch Build Day: make a brittle EDI retry path heal itself.","Platform &amp; Reliability Career Mentoring."] },
+    fullstack: { label:"Full-Stack & Software Engineering", month:"Leads December", monthKey:"dec",
+      voices:"Director of Engineering, Staff Engineer, API Platform Lead, Engineering Manager.",
+      rows:["How We Actually Pick A Tech Stack For A HIPAA-Regulated Platform.","Designing FHIR-Compliant APIs That Survive Five Years.","Ask An Engineering Director.","One Component Library, Three Portals.","Ship one real feature front to back, judged by the engineering team.","Engineering Career Mentoring: specialise, or stay full-stack?"] },
+    security: { label:"Security & Risk (InfoSec)", month:"Leads January", monthKey:"jan",
+      voices:"Head of Security &amp; Risk, AppSec Lead, Cloud Security Architect, Incident Response Manager.",
+      rows:["What We're Actually Worried About In Protecting PHI Through 2027.","Threat Modeling For Healthcare Platforms, From First Principles.","Ask A Security Leader.","Access Reviews People Actually Finish.","Production-grade capture the flag, judged by the security team itself.","SOC, AppSec, GRC Or Cloud: Security Career Mentoring."] },
+    product: { label:"Product & UX/CX", month:"Leads February", monthKey:"feb",
+      voices:"Head of Product &amp; UX/CX, Principal UX Researcher, Group Product Manager, Content Design Lead.",
+      rows:["How We Actually Decide What Not To Build.","Writing Research Questions That Don't Lead The Witness.","Ask A Product Leader.","Plain Language Where Members Worry Most.","Redesign one real member flow in a weekend, tested with users on Sunday.","Research, Design Or Product: Career Mentoring."] },
+    clinical: { label:"Clinical & Healthcare Professionals", month:"From April", monthKey:null,
+      voices:"Medical Director, Clinical Informatics Lead, Care Management Lead, Nurse Case Manager.",
+      rows:["A clinical leader on where care operations and technology now overlap.","Clinical Workflows Every Engineer Should Understand, taught by practising clinicians.","Ask A Clinical Operations Leader.","Removing One Step From A Care Manager's Day.","A real clinical-operations case, judged by the clinical team itself.","Clinical To Clinical-Informatics Career Mentoring."] },
+    corpops: { label:"Corporate & Business Operations", month:"Leads March", monthKey:"mar",
+      voices:"Head of Business Operations, Provider Network Operations Lead, Finance Business Partner, Process Excellence Manager.",
+      rows:["Where Operations Sits In A Healthcare Company This Size.","Reading A P&amp;L Without An MBA.","Ask An Operations Leader.","One Source Of Truth For Provider Onboarding.","A real operating problem, one weekend, judged by operations leadership.","Analyst To Operations Leader: Career Mentoring."] },
+    support: { label:"Customer & Support Services", month:"From April", monthKey:null,
+      voices:"Head of Member Experience, Escalations Lead, Quality &amp; Training Manager, Workforce Planning Lead.",
+      rows:["A member-experience leader on what support data says before the roadmap does.","Resolving The Hard Escalations, taught by senior support leads.","Ask A Member Experience Leader.","Fixing The Top Call Driver At Its Source.","A real support-escalation case, judged by the support leadership team.","Support To Ops, Product Or CX: Career Mentoring."] }
+  };
+  var CLUSTER_ROW_META = [
+    ["icon-key","Leadership Access"],["icon-doc","Expert Session"],["icon-message","AMA"],
+    ["icon-venn","Innovation Group"],["icon-star","The Flagship"],["icon-link","Speed Mentoring"]
+  ];
+
+  var TRACK_DESC = {
+    both: "One calendar, two audiences. Every engagement is tagged by who it's built for, with nothing separate to run.",
+    exp: "Experienced and expert professionals get access, not training: leadership, architecture conversations, innovation review and peer circles inside their capability.",
+    early: "Early-career professionals learn from the practitioners, build on real problems and get mentored. Where it leads is a result: Train & Deploy."
+  };
+
+  var HOWITRUNS = {
+    pub: ["<b>Draft</b>, written by a practitioner inside that month's capability, not a content team.", "<b>Edit</b>, one senior editor checks it for accuracy and tone, nothing else.", "<b>Publish</b>, a fixed weekly slot, every week, whether or not it's a slow news week."],
+    virtual: ["Topic is sourced from whatever members actually asked most in the month before, never a pre-set syllabus.", "Co-hosted by one internal domain lead and one member, not run by WeiTA alone.", "The recording gets clipped into that capability's next Podcast episode, so a 45-minute call has a second life."],
+    inperson: ["Capped at 25–30 RSVPs on purpose, to stay conversational rather than a career fair.", "Hosted by the local WeiTA Hub lead with one practitioner from that month's capability, not a sales or TA representative.", "Always closes with 15 unstructured minutes, the part members consistently rate highest afterward."],
+    hackathon: ["Problems are sourced from real, anonymized production tickets about two weeks out.", "Judged by the domain lead whose team actually owns that ticket, not HR or a generalist panel.", "The top three teams get a direct 20-minute session with that domain lead afterward, win or lose."],
+    speedmentor: ["Mentors are senior practitioners in that month's capability who opt in for a single one-hour session at a time.", "Mentees are matched by capability first, not by seniority alone.", "Five-minute structured rounds, about six per hour, timed strictly, per the format's own best-practice guidance.", "A match card at the end lets a strong pairing keep talking past the session, which is the one live format built to turn a single hour into an ongoing relationship."]
+  };
+
+  var LIBRARY = {
+    oct: {
+      pub:{tag:"CLOUD & INFRA", title:"Inside The EDI Network Migration: What Actually Broke", meta:"Field Notes · 4 min read", snippet:"A candid account of migrating a live claims EDI pipeline: not the plan, the part where it didn't go to plan."},
+      video:{presenter:"Priya Raman", role:"VP Engineering", dur:"6:42", title:"Why We're Building This, Not Just Announcing It"},
+      course:{top1:"Expert Session · Part 3 of 5", top2:"22 Min", title:"Claims Processing At Scale: EDI Pipelines, From First Principles", pct:38},
+      project:{module:"Group Project · Module 1 of 3", title:"Provisioning A HIPAA-Compliant Environment"},
+      hackathon:{date:"18–19 OCT · FLAGSHIP", title:"The WeiTA Build Day", sub:"One event, eight tracks: a dedicated brief for every capability cluster.", chips:["Cloud","AI/ML","Security","+5 More"]},
+      game:{top:"This Week's Challenge · City Leaderboard", title:"Optimize This Claims Query: 3 Days Left", cities:["Bengaluru","Hyderabad","Pune"], pts:[940,905,870]},
+      speedmentor:{round:"Platform Mentoring · Round 2 of 6", senior:"Priya Raman", seniorRole:"VP Engineering", junior:"Rakesh K.", juniorRole:"Cloud & Infra"},
+      virtual:{title:"Deep Dive: Scaling Data Teams Around Claims & Clinical Data", joined:24},
+      inperson:{title:"Regional Roundtable: Bengaluru", when:"Wed, 22 Oct · 6:30 PM · WeiTA Hub"},
+      pitch:{stat:"Innovation Group · 38 Ideas This Quarter · 3 Reached Leadership", name:"Divya V.", tag:"Product & UX/CX", title:"A Simpler First 10 Minutes For New Health Plan Members", line:"Cuts the average member onboarding time from 9 minutes to under 3."},
+      ama:{q:"Is Optum hiring forward-deployed engineers outside Bengaluru this year?", a:"Yes, Hyderabad and Gurgaon both opened this quarter.", count:42},
+      podcast:{ep:"Ep. 12: What An EDI Migration Retro Actually Sounds Like", guest:"Priya Raman, Cloud & Infra", dur:"16 min"},
+      spotlight:{quote:"I didn't expect a hiring-side community to actually teach me something every month, but here we are.", who:"Sana M.", tag:"Full-Stack & Software Engineering"}
+    },
+    nov: {
+      pub:{tag:"AI/ML", title:"What Our Claims Risk-Scoring Model Actually Gets Wrong", meta:"Field Notes · 5 min read", snippet:"Where a production risk-scoring model quietly failed on an edge case, and what the team actually changed."},
+      video:{presenter:"Meera Iyer", role:"Head of Applied AI", dur:"7:10", title:"Building The Applied AI Bench For Claims & Care"},
+      course:{top1:"Expert Session · Part 2 of 4", top2:"18 Min", title:"Building Production-Ready AI Systems", pct:52},
+      project:{module:"Group Project · Module 1 of 3", title:"A Real Feature Pipeline"},
+      hackathon:{date:"14–15 NOV · FLAGSHIP", title:"Build With GenAI", sub:"The WeiTA AI/ML Build Day. Real, de-identified data, judged by the Applied AI team itself.", chips:["GenAI","Model Eval","Claims Data","MLOps"]},
+      game:{top:"This Week's Challenge · City Leaderboard", title:"Debug This Model: 3 Days Left", cities:["Hyderabad","Bengaluru","Chennai"], pts:[880,845,810]},
+      speedmentor:{round:"AI Career & Capability Mentoring · Round 3 of 6", senior:"Meera Iyer", seniorRole:"Head of Applied AI", junior:"Ananya D.", juniorRole:"AI/ML & Data Science"},
+      virtual:{title:"Architecture Conversation: Where MLOps Actually Breaks In Production", joined:31},
+      inperson:{title:"Peer Circle: AI On Regulated Data, Hyderabad", when:"Thu, 26 Nov · 6:30 PM · WeiTA Hub"},
+      pitch:{stat:"Innovation Group · 44 Ideas This Quarter · 4 Reached Leadership", name:"Rohit S.", tag:"AI/ML & Data Science", title:"An Anomaly-Detection Layer For Claims Review", line:"Flags irregular claims before they reach manual review, not after."},
+      ama:{q:"Are you hiring applied research roles, or only production ML engineers this cycle?", a:"Both, six applied research seats open in Hyderabad and Bengaluru.", count:37},
+      podcast:{ep:"Ep. 13: What Actually Breaks When A Claims Model Ships", guest:"Meera Iyer, Applied AI", dur:"21 min"},
+      spotlight:{quote:"The AI/ML architecture conversation is the one call I never skip, it's the only place I get a straight answer on what's actually shipping.", who:"Rohit S.", tag:"AI/ML & Data Science"}
+    },
+    dec: {
+      pub:{tag:"FULL-STACK", title:"Why We Rewrote Our Member Refill Workflow Twice", meta:"Field Notes · 4 min read", snippet:"Two rewrites, two different wrong reasons, and what finally made the third one stick."},
+      video:{presenter:"Karan Bhatt", role:"Director of Engineering", dur:"6:05", title:"How We Actually Pick A Tech Stack For A HIPAA-Regulated Platform"},
+      course:{top1:"Expert Session · Part 4 of 5", top2:"25 Min", title:"Designing FHIR-Compliant APIs That Survive Five Years", pct:64},
+      project:{module:"Group Project · Module 1 of 3", title:"Shipping One Member-Portal Feature End-To-End"},
+      hackathon:{date:"12–13 DEC · FLAGSHIP", title:"The WeiTA Full-Stack Build Day", sub:"Ship one real feature, front to back, judged by the engineering team.", chips:["React","FHIR APIs","Systems Design","+3 More"]},
+      game:{top:"This Week's Challenge · City Leaderboard", title:"Refactor This Legacy Claims Endpoint: 3 Days Left", cities:["Pune","Bengaluru","Gurgaon"], pts:[915,880,830]},
+      speedmentor:{round:"Engineering Career Mentoring · Round 1 of 6", senior:"Karan Bhatt", seniorRole:"Director of Engineering", junior:"Meher S.", juniorRole:"Full-Stack & Software Engineering"},
+      virtual:{title:"Architecture Conversation: Monoliths, Microservices And What We'd Do Differently", joined:28},
+      inperson:{title:"Regional Roundtable: Pune", when:"Fri, 25 Dec · 6:30 PM · WeiTA Hub"},
+      pitch:{stat:"Innovation Group · 41 Ideas This Quarter · 3 Reached Leadership", name:"Neha T.", tag:"Full-Stack & Software Engineering", title:"A Shared Component Library Across The Member, Provider & Ops Portals", line:"Cuts duplicate UI work that three teams were quietly solving separately."},
+      ama:{q:"Is the platform team hiring for the new member-portal refill rebuild?", a:"Yes, two backend seats open now, one design-systems seat opening in Q1.", count:35},
+      podcast:{ep:"Ep. 14: Two Rewrites, One Lesson", guest:"Karan Bhatt, Full-Stack Engineering", dur:"19 min"},
+      spotlight:{quote:"Nobody at my last company would've read a real postmortem like this one. Here, it's just normal.", who:"Neha T.", tag:"Full-Stack & Software Engineering"}
+    },
+    jan: {
+      pub:{tag:"SECURITY & RISK", title:"Inside A Real Incident: What The Postmortem Doesn't Say About A PHI Near-Miss", meta:"Field Notes · 5 min read", snippet:"What actually got fixed after a real PHI-exposure near-miss, and what got quietly deprioritized."},
+      video:{presenter:"Arjun T.", role:"Head of Security & Risk", dur:"8:20", title:"What We're Actually Worried About In Protecting PHI Through 2027"},
+      course:{top1:"Expert Session · Part 2 of 5", top2:"20 Min", title:"Threat Modeling For Healthcare Platforms, From First Principles", pct:45},
+      project:{module:"Group Project · Module 1 of 3", title:"Live Threat Triage On A Healthcare Platform"},
+      hackathon:{date:"16–17 JAN · FLAGSHIP", title:"The WeiTA Security Build Day", sub:"Capture the flag, production-grade, judged by the security team itself.", chips:["AppSec","HIPAA/PHI","Cloud Security","+2 More"]},
+      game:{top:"This Week's Challenge · City Leaderboard", title:"Find The Vulnerability In This Claims API: 3 Days Left", cities:["Gurgaon","Bengaluru","Hyderabad"], pts:[895,860,820]},
+      speedmentor:{round:"Security Career Mentoring · Round 4 of 6", senior:"Arjun T.", seniorRole:"Head of Security & Risk", junior:"Fatima R.", juniorRole:"Security & Risk"},
+      virtual:{title:"Architecture Conversation: What A Good Access Model Actually Requires", joined:26},
+      inperson:{title:"Peer Circle: Security Practitioners, Gurgaon", when:"Wed, 28 Jan · 6:30 PM · WeiTA Hub"},
+      pitch:{stat:"Innovation Group · 36 Ideas This Quarter · 3 Reached Leadership", name:"Fatima R.", tag:"Security & Risk", title:"A Faster Access-Review Workflow For New Joiners", line:"Cuts new-joiner access provisioning from five days to one."},
+      ama:{q:"Is Optum hiring for the new cloud security posture team?", a:"Yes, three seats open, two in Gurgaon and one in Bengaluru.", count:48},
+      podcast:{ep:"Ep. 15: Building Trust In A HIPAA Security Review", guest:"Arjun T., Security & Risk", dur:"18 min"},
+      spotlight:{quote:"Fatima's access-review idea is already live for every new hire, that's the fastest an idea has ever moved here.", who:"Arjun T.", tag:"Security & Risk"}
+    },
+    feb: {
+      pub:{tag:"PRODUCT & UX/CX", title:"We Shipped The Wrong Fix Three Times Before This One", meta:"Field Notes · 4 min read", snippet:"Three fixes, three different assumptions about the user, and what was actually true."},
+      video:{presenter:"Nandini R.", role:"Head of Product & UX/CX", dur:"6:50", title:"How We Actually Decide What Not To Build"},
+      course:{top1:"Expert Session · Part 3 of 4", top2:"20 Min", title:"Writing Research Questions That Don't Lead The Witness", pct:58},
+      project:{module:"Group Project · Module 1 of 3", title:"A Real Usability Test"},
+      hackathon:{date:"13–14 FEB · FLAGSHIP", title:"The WeiTA Product & UX Build Day", sub:"Redesign one real flow in a weekend, judged by the product team.", chips:["UX Research","Product Design","CX","+2 More"]},
+      game:{top:"This Week's Challenge · City Leaderboard", title:"Redesign This Flow In 20 Minutes: Peer Voted", cities:["Chennai","Bengaluru","Pune"], pts:[870,835,800]},
+      speedmentor:{round:"Product & Design Mentoring · Round 2 of 6", senior:"Nandini R.", seniorRole:"Head of Product & UX/CX", junior:"Aisha K.", juniorRole:"Product & UX/CX"},
+      virtual:{title:"Practitioner Conversation: When Support Data Should Change The Roadmap", joined:22},
+      inperson:{title:"Regional Roundtable: Chennai", when:"Thu, 26 Feb · 6:30 PM · WeiTA Hub"},
+      pitch:{stat:"Innovation Group · 39 Ideas This Quarter · 3 Reached Leadership", name:"Aisha K.", tag:"Product & UX/CX", title:"A Plain-Language Rewrite Of The Claims Status Page", line:"Cuts claims-status support calls by rewriting one page in plain language."},
+      ama:{q:"Is the design team hiring for the new CX research function?", a:"Yes, two researcher seats open, remote-friendly.", count:33},
+      podcast:{ep:"Ep. 16: What Not To Build, And How We Decide", guest:"Nandini R., Product & UX/CX", dur:"20 min"},
+      spotlight:{quote:"I pitched an idea in October. In February I'm leading the team that shipped it. That's not something I expected from a hiring-side community.", who:"Divya V.", tag:"Product & UX/CX"}
+    },
+    mar: {
+      pub:{tag:"CORPORATE OPS", title:"What Actually Slows Down A Cross-Team Handoff", meta:"Field Notes · 4 min read", snippet:"The handoff wasn't broken because of the tool, it was broken because of who owned the decision."},
+      video:{presenter:"Sanjay M.", role:"Head of Business Operations", dur:"7:40", title:"Where Operations Sits In A Healthcare Company This Size"},
+      course:{top1:"Expert Session · Part 2 of 4", top2:"16 Min", title:"Reading A P&L Without An MBA", pct:47},
+      project:{module:"Group Project · Module 1 of 3", title:"Running A Real Process Audit"},
+      hackathon:{date:"20–21 MAR · FLAGSHIP", title:"The WeiTA Operations Case Challenge", sub:"A real operating problem, one weekend, judged by the operations leadership team.", chips:["Process Design","Provider Network Ops","P&L","+2 More"]},
+      game:{top:"This Week's Challenge · City Leaderboard", title:"Spot The Process Gap: Case-Based Challenge", cities:["Bengaluru","Chennai","Hyderabad"], pts:[860,825,795]},
+      speedmentor:{round:"Operations Career Mentoring · Round 5 of 6", senior:"Sanjay M.", seniorRole:"Head of Business Operations", junior:"Ritu P.", juniorRole:"Corporate & Business Operations"},
+      virtual:{title:"Practitioner Conversation: What Good Operating Cadence Actually Looks Like", joined:19},
+      inperson:{title:"Regional Roundtable: Bengaluru (Ops & Support)", when:"Fri, 27 Mar · 6:30 PM · WeiTA Hub"},
+      pitch:{stat:"Innovation Group · 34 Ideas This Quarter · 2 Reached Leadership", name:"Ritu P.", tag:"Corporate & Business Operations", title:"A Single Source Of Truth For Provider Network Onboarding", line:"Replaces four separate provider-onboarding trackers with one."},
+      ama:{q:"Is the operations team hiring for the new provider-network operations function?", a:"Yes, one lead role open in Bengaluru, reporting directly to Sanjay.", count:29},
+      podcast:{ep:"Ep. 17: What Operations Actually Owns In A Company This Size", guest:"Sanjay M., Business Operations", dur:"17 min"},
+      spotlight:{quote:"Ritu's provider-onboarding idea replaced a system four different teams were quietly maintaining on their own, the kind of fix that never gets noticed unless someone's actually looking.", who:"Sanjay M.", tag:"Corporate & Business Operations"}
+    }
+  };
+
+  function detailHtml(key){
+    if(!HOWITRUNS[key]) return '';
+    return '<details class="lib-detail"><summary>How This Runs</summary><ol>' + HOWITRUNS[key].map(function(li){ return '<li>' + li + '</li>'; }).join('') + '</ol></details>';
+  }
+
+  var LIB_RENDER = {
+    pub: function(d){
+      return '<div class="art-img"><span class="art-tag">' + esc(d.tag) + '</span></div>' +
+        '<div class="art-body"><h5>' + esc(d.title) + '</h5><div class="art-meta">' + esc(d.meta) + '</div><div class="art-snip">' + esc(d.snippet) + '</div>' + detailHtml('pub') + '</div>';
+    },
+    video: function(d){
+      return '<div class="vid-frame"><div class="play"><svg viewBox="0 0 12 14" fill="var(--ink)"><path d="M0 0L12 7L0 14Z"/></svg></div>' +
+        '<span class="vid-dur">' + esc(d.dur) + '</span><span class="vid-who">' + esc(d.presenter) + ' · ' + esc(d.role) + '</span></div>' +
+        '<div class="vid-body"><h5>' + esc(d.title) + '</h5></div>';
+    },
+    course: function(d){
+      return '<div class="crs-body"><div class="crs-top"><span>' + esc(d.top1) + '</span><span>' + esc(d.top2) + '</span></div>' +
+        '<h5>' + esc(d.title) + '</h5><div class="bar"><i style="width:' + d.pct + '%"></i></div>' +
+        '<div class="crs-bottom"><span>Live, Then On Demand</span><span class="startbtn">Join</span></div></div>';
+    },
+    project: function(d){
+      return '<div class="td-body"><div class="td-top">' + esc(d.module) + '</div><h5>' + esc(d.title) + '</h5>' +
+        '<div class="td-steps"><div class="td-step done"><div class="td-line"></div><div class="td-dot">✓</div><div class="td-lbl">Learn</div></div>' +
+        '<div class="td-step current"><div class="td-line"></div><div class="td-dot">2</div><div class="td-lbl">Apply</div></div>' +
+        '<div class="td-step"><div class="td-line"></div><div class="td-dot">3</div><div class="td-lbl">Review</div></div>' +
+        '<div class="td-step"><div class="td-line"></div><div class="td-dot">4</div><div class="td-lbl">Train &amp; Deploy</div></div></div>' +
+        '<div class="td-note">Not a certificate. A real go/no-go from the team that would staff this work. Pass, and the result is Train &amp; Deploy.</div></div>';
+    },
+    hackathon: function(d){
+      return '<div class="hk-banner"><div class="hk-date">' + esc(d.date) + '</div><h5>' + esc(d.title) + '</h5>' +
+        '<div class="hk-sub">' + esc(d.sub) + '</div><div class="hk-chips">' + d.chips.map(function(c){ return '<span class="hk-chip">' + esc(c) + '</span>'; }).join('') +
+        '</div><span class="hk-cta">Register Your Track</span></div>' + detailHtml('hackathon');
+    },
+    game: function(d){
+      var rows = d.cities.map(function(city, i){
+        return '<div class="lb-row"><span class="lb-rank">0' + (i+1) + '</span><span class="lb-av">' + city.slice(0,3).toUpperCase() + '</span><span class="lb-name">' + city + '</span><span class="lb-pts">' + d.pts[i] + ' pts</span></div>';
+      }).join('');
+      return '<div class="lb-body"><div class="lb-top">' + esc(d.top) + '</div><h5>' + esc(d.title) + '</h5>' + rows +
+        '<div class="lb-city-note">Whole cities compete as one cohort, not individual leaderboards.</div></div>';
+    },
+    speedmentor: function(d){
+      return '<div class="sm-body"><div class="sm-top">' + esc(d.round) + '</div>' +
+        '<div class="sm-pair"><div class="sm-side senior"><div class="sm-role">Mentor</div><div class="sm-who">' + esc(d.senior) + '</div><div class="sm-role">' + esc(d.seniorRole) + '</div></div>' +
+        '<span class="sm-arrow">⇄</span><div class="sm-side junior"><div class="sm-role">Mentee</div><div class="sm-who">' + esc(d.junior) + '</div><div class="sm-role">' + esc(d.juniorRole) + '</div></div></div></div>' + detailHtml('speedmentor');
+    },
+    virtual: function(d){
+      return '<div class="vt-top"><h5>' + esc(d.title) + '</h5></div>' +
+        '<div class="vt-grid"><div class="vt-tile speak">PN</div><div class="vt-tile">SK</div><div class="vt-tile">MJ</div>' +
+        '<div class="vt-tile">RL</div><div class="vt-tile">DV</div><div class="vt-tile">+' + Math.max(d.joined - 5, 1) + '</div></div>' +
+        '<div class="vt-bottom"><span>' + d.joined + ' Joined</span><span class="joinbtn">Join</span></div>' + detailHtml('virtual');
+    },
+    inperson: function(d){
+      return '<div class="ip-map"><svg class="ip-pin" viewBox="0 0 24 24" fill="none" stroke="var(--c-inperson)" stroke-width="1.6"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg></div>' +
+        '<div class="ip-body"><h5>' + esc(d.title) + '</h5><div class="ip-when">' + esc(d.when) + '</div>' +
+        '<div class="ip-bottom"><div class="ip-avs"><span class="ip-av"></span><span class="ip-av"></span><span class="ip-av"></span></div><span class="rsvpbtn">RSVP</span></div>' + detailHtml('inperson') + '</div>';
+    },
+    pitch: function(d){
+      return '<div class="pt-body"><div class="pt-stat">' + esc(d.stat) + '</div>' +
+        '<div class="pt-steps"><div class="pt-step done"><div class="pt-conn"></div><div class="pt-dot">✓</div><div class="pt-slbl">Submit</div></div>' +
+        '<div class="pt-step done"><div class="pt-conn"></div><div class="pt-dot">✓</div><div class="pt-slbl">Peer Review</div></div>' +
+        '<div class="pt-step current"><div class="pt-conn"></div><div class="pt-dot">3</div><div class="pt-slbl">Leadership Review</div></div>' +
+        '<div class="pt-step"><div class="pt-conn"></div><div class="pt-dot">4</div><div class="pt-slbl">Outcome</div></div></div>' +
+        '<div class="pt-who"><span class="pt-av">' + d.name.split(' ').map(function(w){return w[0];}).join('') + '</span><div><div class="pt-name">' + esc(d.name) + '</div><div class="pt-tag">' + esc(d.tag) + '</div></div></div>' +
+        '<h5>' + esc(d.title) + '</h5><div class="pt-line">' + esc(d.line) + '</div></div>';
+    },
+    ama: function(d){
+      return '<div class="am-body"><div class="am-q">"' + esc(d.q) + '"</div>' +
+        '<div class="am-a"><span class="am-badge">Leadership</span>' + esc(d.a) + '</div>' +
+        '<div class="am-foot">' + d.count + ' questions asked this month</div></div>';
+    },
+    podcast: function(d){
+      var bars = [40,70,100,55,85,30,65,95,45,75,25,60];
+      return '<div class="pd-body"><div class="pd-wave">' + bars.map(function(h){ return '<i style="height:' + h + '%"></i>'; }).join('') + '</div>' +
+        '<h5>' + esc(d.ep) + '</h5><div class="pd-meta">With ' + esc(d.guest) + ' · ' + esc(d.dur) + '</div>' +
+        '<div class="pd-play"><svg viewBox="0 0 12 14" fill="#fff"><path d="M0 0L12 7L0 14Z"/></svg></div></div>';
+    },
+    spotlight: function(d){
+      return '<div class="sp-body"><svg class="sp-star" viewBox="0 0 24 24" fill="var(--c-spotlight)"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 6.9L12 17l-6.3 3.8 1.7-6.9L2 9.2l7.1-.6z"/></svg>' +
+        '<blockquote>"' + esc(d.quote) + '"</blockquote><div class="sp-who">' + esc(d.who) + ' · ' + esc(d.tag) + '</div></div>';
+    }
+  };
+
+  function renderLibrary(m){
+    var data = LIBRARY[m];
+    Object.keys(LIB_RENDER).forEach(function(key){
+      var el = document.querySelector('#fmt-' + key + ' .mock-body');
+      if(el && data[key]) el.innerHTML = LIB_RENDER[key](data[key]);
+    });
+  }
+
+  var currentMonth = 'oct', currentTrack = 'both';
+  var SCROLL = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth';
+
+  function renderBrief(m){
+    var M = MONTHS[m];
+    document.getElementById('cb-month').textContent = M.name + ', Capability In Focus';
+    document.getElementById('cb-cap').textContent = M.cap;
+    document.getElementById('cb-line').textContent = M.line;
+    var noteEl = document.getElementById('cb-note');
+    noteEl.innerHTML = M.note;
+    noteEl.style.display = M.note ? '' : 'none';
+    document.getElementById('cb-voices').innerHTML = M.voices.map(function(v){ return '<li>' + esc(v) + '</li>'; }).join('');
+    document.getElementById('cb-skills').innerHTML = M.skills.map(function(s){ return '<span class="cb-skill">' + esc(s) + '</span>'; }).join('');
+    document.getElementById('cb-arc').innerHTML = [1,2,3,4].map(function(w){
+      return '<span class="cb-arc-item"><span class="cb-arc-step"><span class="cb-arc-wk">Week ' + w + '</span>' + esc(M.weeks[w].theme) + '</span>' +
+        (w < 4 ? '<span class="cb-arc-sep" aria-hidden="true">→</span>' : '') + '</span>';
+    }).join('');
+  }
+
+  function renderJourney(m){
+    var J = JOURNEY[m];
+    document.getElementById('ej-cap').textContent = MONTHS[m].cap;
+    J.early.forEach(function(t, i){ document.getElementById('ej-early-' + i).textContent = t; });
+    J.exp.forEach(function(t, i){ document.getElementById('ej-exp-' + i).textContent = t; });
+  }
+
+  function slotDetailHtml(m, s){
+    return '<div class="sd-main">' +
+        '<div class="sd-type"><span class="fdot" style="background:' + FMT_COLOR[s.fmt] + '"></span>' + esc(s.type) + '</div>' +
+        '<h4 class="sd-title">' + esc(s.title) + '</h4>' +
+        '<p class="sd-content">' + esc(s.content) + '</p>' +
+        '<p class="sd-voice"><span>Led by</span>' + esc(s.voice) + '</p>' +
+        '<button class="sd-fmt" type="button">See How This Format Runs</button>' +
+      '</div>' +
+      '<div class="sd-side">' +
+        '<div class="sd-row"><div class="sd-lbl">Capability</div><div class="sd-val">' + esc(MONTHS[m].cap) + '</div></div>' +
+        '<div class="sd-row"><div class="sd-lbl">Audience</div><div class="sd-val">' + esc(AUDIENCE[s.track]) + '</div></div>' +
+        '<div class="sd-row"><div class="sd-lbl">How It Converts</div><div class="sd-val sd-conv">' + esc(s.converts) + '</div></div>' +
+        '<div class="sd-row"><div class="sd-lbl">Result</div><div class="sd-val"><span class="res-tag' + (s.result === 'Train & Deploy' || s.result === 'Offer To Join' ? ' key' : '') + '">' + esc(s.result) + '</span></div></div>' +
+      '</div>';
+  }
+
+  function selectSlot(panel, idx){
+    var slots = panel._slots, s = slots[idx];
+    panel.querySelectorAll('.slot').forEach(function(b){ b.setAttribute('aria-pressed', String(Number(b.dataset.idx) === idx)); });
+    var det = panel.querySelector('.slot-detail');
+    det.innerHTML = slotDetailHtml(currentMonth, s);
+    det.style.display = '';
+    det.querySelector('.sd-fmt').addEventListener('click', function(){ highlightFormat('fmt-' + s.fmt); });
+    panel._selected = idx;
+  }
+
+  function renderWeeks(m){
+    var tabsEl = document.getElementById('week-tabs');
+    var panelsEl = document.getElementById('week-panels');
+    tabsEl.innerHTML = '';
+    panelsEl.innerHTML = '';
+    var M = MONTHS[m];
+    [1,2,3,4].forEach(function(w){
+      var W = M.weeks[w];
+      var tab = document.createElement('button');
+      tab.className = 'week-tab';
+      tab.setAttribute('role', 'tab');
+      tab.dataset.week = w;
+      tab.innerHTML = '<span class="wt-top">Week ' + w + ' · ' + WEEK_LABELS[m][w-1] + '</span><span class="wt-theme">' + esc(W.theme) + (w === 3 ? ', Flagship' : '') + '</span>';
+      tab.addEventListener('click', function(){ selectWeek(w); });
+      tabsEl.appendChild(tab);
+
+      var panel = document.createElement('div');
+      panel.className = 'week-panel';
+      panel.id = 'wp-' + w;
+      panel._slots = W.slots;
+      var intent = document.createElement('p');
+      intent.className = 'week-intent';
+      intent.textContent = W.intent;
+      panel.appendChild(intent);
+      var meta = document.createElement('div');
+      meta.className = 'week-meta';
+      meta.textContent = WEEK_LABELS[m][w-1] + ' · ' + W.theme + ' · ' + W.slots.length + ' engagements' + (w === 3 ? ' · Flagship Week' : '');
+      panel.appendChild(meta);
+      var row = document.createElement('div');
+      row.className = 'slot-row';
+      W.slots.forEach(function(s, i){
+        var btn = document.createElement('button');
+        btn.className = 'slot' + (s.flagship ? ' flagship' : '');
+        btn.type = 'button';
+        btn.dataset.track = s.track;
+        btn.dataset.idx = i;
+        btn.setAttribute('aria-pressed', 'false');
+        var pill = s.track !== 'both' ? '<span class="strack">' + (s.track === 'early' ? 'Early-Career' : 'Experienced') + '</span>' : '';
+        btn.innerHTML = (s.flagship ? '' : '<span class="fdot" style="background:' + FMT_COLOR[s.fmt] + '"></span>') +
+          '<span class="stxt"><span class="ftype">' + esc(s.type) + '</span><span class="ftitle">' + esc(s.title) + '</span><span class="fvoice">' + esc(s.voice) + '</span></span>' + pill;
+        btn.addEventListener('click', function(){ selectSlot(panel, i); });
+        row.appendChild(btn);
+      });
+      panel.appendChild(row);
+      var det = document.createElement('div');
+      det.className = 'slot-detail';
+      det.setAttribute('aria-live', 'polite');
+      panel.appendChild(det);
+      panelsEl.appendChild(panel);
+    });
+    selectWeek(1);
+    applyTrackFilter();
+  }
+
+  function selectWeek(w){
+    document.querySelectorAll('.week-tab').forEach(function(b){ b.setAttribute('aria-pressed', String(Number(b.dataset.week) === Number(w))); });
+    document.querySelectorAll('.week-panel').forEach(function(p){ p.classList.toggle('show', p.id === 'wp-' + w); });
+  }
+
+  function selectMonth(m){
+    currentMonth = m;
+    document.querySelectorAll('.month-tab').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.month === m)); });
+    renderBrief(m);
+    renderLibrary(m);
+    renderWeeks(m);
+    renderJourney(m);
+    selectCluster(MONTHS[m].cluster);
+  }
+
+  function selectCluster(c){
+    var d = CLUSTER_CONTENT[c];
+    document.querySelectorAll('.cluster-tab').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.cluster === c)); });
+    document.getElementById('cluster-panel-title').textContent = d.label;
+    var monthEl = document.getElementById('cluster-panel-month');
+    monthEl.textContent = d.month;
+    monthEl.classList.toggle('not-yet', !d.monthKey);
+    var html = CLUSTER_ROW_META.map(function(r, i){
+      return '<div class="cp-row"><svg><use href="#' + r[0] + '"/></svg><div class="cp-row-body"><div class="cp-row-label">' + r[1] + '</div><div class="cp-row-text">' + d.rows[i] + '</div></div></div>';
+    }).join('');
+    html += '<div class="cp-row"><svg><use href="#icon-users"/></svg><div class="cp-row-body"><div class="cp-row-label">The Voices</div><div class="cp-row-text">' + d.voices + '</div></div></div>';
+    if(d.monthKey && d.monthKey !== currentMonth){
+      html += '<div class="cp-open"><button class="cp-open-btn" type="button" data-month="' + d.monthKey + '">Open ' + MONTHS[d.monthKey].name + ' In The Calendar</button></div>';
+    }
+    var rowsEl = document.getElementById('cluster-panel-rows');
+    rowsEl.innerHTML = html;
+    var openBtn = rowsEl.querySelector('.cp-open-btn');
+    if(openBtn){
+      openBtn.addEventListener('click', function(){
+        selectMonth(openBtn.dataset.month);
+        document.getElementById('calendar-toolbar').scrollIntoView({ behavior:SCROLL, block:'start' });
+      });
+    }
+  }
+
+  function applyTrackFilter(){
+    document.querySelectorAll('.slot').forEach(function(s){
+      var t = s.dataset.track;
+      var show = currentTrack === 'both' || t === 'both' || t === currentTrack;
+      s.classList.toggle('slot-hidden', !show);
+    });
+    document.querySelectorAll('.week-panel').forEach(function(p){
+      var sel = p.querySelector('.slot[data-idx="' + p._selected + '"]');
+      if(sel && !sel.classList.contains('slot-hidden')) return;
+      var first = p.querySelector('.slot:not(.slot-hidden)');
+      if(first){ selectSlot(p, Number(first.dataset.idx)); }
+      else { p.querySelector('.slot-detail').style.display = 'none'; }
+    });
+  }
+
+  function selectTrack(t){
+    currentTrack = t;
+    document.querySelectorAll('.track-btn').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.track === t)); });
+    document.getElementById('track-desc').textContent = TRACK_DESC[t];
+    applyTrackFilter();
+  }
+
+  function highlightFormat(id){
+    document.querySelectorAll('.mock').forEach(function(m){ m.classList.remove('pulse'); });
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.classList.add('pulse');
+    el.scrollIntoView({ behavior:SCROLL, block:'center' });
+    setTimeout(function(){ el.classList.remove('pulse'); }, 2200);
+  }
+
+  document.querySelectorAll('.month-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ selectMonth(btn.dataset.month); });
+  });
+  document.querySelectorAll('.track-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ selectTrack(btn.dataset.track); });
+  });
+  document.querySelectorAll('.cluster-tab').forEach(function(btn){
+    btn.addEventListener('click', function(){ selectCluster(btn.dataset.cluster); });
+  });
+
+  selectTrack('both');
+  selectMonth('oct');
+})();
+</script>
+</body>
+</html>
